@@ -1,0 +1,57 @@
+!Job
+target: !Target
+  head: a4ca0209d97ce70281890255b8c9ecb38dc59f2d
+  email: unknown
+  branch: gh-38479-lz-ub
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 15.0.0.dev225
+  r_version: 14.0.1.100000225
+  no_rc_version: 15.0.0.dev225
+  no_rc_r_version: 14.0.1.100000225
+  no_rc_semver_version: 15.0.0-dev225
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-r-sanitizer: !Task
+    name: test-ubuntu-r-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-096f0cf193-azure-test-ubuntu-r-sanitizer
+    commit: b0ed25ec05aa12e0623a35d44eff672687f9f283
+  test-fedora-r-clang-sanitizer: !Task
+    name: test-fedora-r-clang-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-096f0cf193-azure-test-fedora-r-clang-sanitizer
+    commit: 690c70cb9d2abbb53dc15222961fb37c3334c47a
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    name: test-ubuntu-20.04-cpp-thread-sanitizer
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-096f0cf193-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: b4659172bcdc8f3f2e9a977fc3d49c68978a85a1
+params:
+  pr_number: 39125
+branch: actions-096f0cf193
