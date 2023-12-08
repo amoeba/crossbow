@@ -1,0 +1,362 @@
+!Job
+target: !Target
+  head: 3b3a3f8ed7d77b3e35d147b3b5aed745f0dcde9b
+  email: unknown
+  branch: cpp-hdfs-remove-needless-protobuf-dependency
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 15.0.0.dev227
+  r_version: 14.0.1.100000227
+  no_rc_version: 15.0.0.dev227
+  no_rc_r_version: 14.0.1.100000227
+  no_rc_semver_version: 15.0.0-dev227
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-conda-cpp-valgrind: !Task
+    name: test-conda-cpp-valgrind
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-53621e6da1-azure-test-conda-cpp-valgrind
+    commit: 60bb6385abd0dca9402332d328c707f490351dbf
+  test-ubuntu-20.04-cpp-minimal-with-formats: !Task
+    name: test-ubuntu-20.04-cpp-minimal-with-formats
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e ARROW_CSV=ON -e ARROW_PARQUET=ON
+      image: ubuntu-cpp-minimal
+
+    branch: actions-53621e6da1-github-test-ubuntu-20.04-cpp-minimal-with-formats
+    commit: 8a23acfff26d5fead42489cbd388b9c2fa173561
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    name: test-ubuntu-20.04-cpp-thread-sanitizer
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-53621e6da1-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: 294f94a55a0c79892189b346f50920406c174bdc
+  test-ubuntu-22.04-cpp-no-threading: !Task
+    name: test-ubuntu-22.04-cpp-no-threading
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e ARROW_ENABLE_THREADING=OFF
+      image: ubuntu-cpp
+
+    branch: actions-53621e6da1-github-test-ubuntu-22.04-cpp-no-threading
+    commit: 5640812c8c2cefa5fa7e0147970f0b0c32fbf944
+  test-conda-cpp: !Task
+    name: test-conda-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp
+    branch: actions-53621e6da1-github-test-conda-cpp
+    commit: aec7f966c8b127e668c3eeeb5ec48b002e2abe44
+  test-alpine-linux-cpp: !Task
+    name: test-alpine-linux-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: alpine-linux-cpp
+    branch: actions-53621e6da1-github-test-alpine-linux-cpp
+    commit: 94db3013b0f2bd201b69157b8bae8386eb1e12a7
+  java-jars: !Task
+    name: java-jars
+    ci: github
+    template: java-jars/github.yml
+    artifacts:
+    - arrow-algorithm-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-algorithm-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-algorithm-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-algorithm-15.0.0-SNAPSHOT-sources.jar
+    - arrow-algorithm-15.0.0-SNAPSHOT-tests.jar
+    - arrow-algorithm-15.0.0-SNAPSHOT.jar
+    - arrow-algorithm-15.0.0-SNAPSHOT.pom
+    - arrow-avro-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-avro-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-avro-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-avro-15.0.0-SNAPSHOT-sources.jar
+    - arrow-avro-15.0.0-SNAPSHOT-tests.jar
+    - arrow-avro-15.0.0-SNAPSHOT.jar
+    - arrow-avro-15.0.0-SNAPSHOT.pom
+    - arrow-bom-15.0.0-SNAPSHOT.pom
+    - arrow-c-data-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-c-data-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-c-data-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-c-data-15.0.0-SNAPSHOT-sources.jar
+    - arrow-c-data-15.0.0-SNAPSHOT-tests.jar
+    - arrow-c-data-15.0.0-SNAPSHOT.jar
+    - arrow-c-data-15.0.0-SNAPSHOT.pom
+    - arrow-compression-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-compression-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-compression-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-compression-15.0.0-SNAPSHOT-sources.jar
+    - arrow-compression-15.0.0-SNAPSHOT-tests.jar
+    - arrow-compression-15.0.0-SNAPSHOT.jar
+    - arrow-compression-15.0.0-SNAPSHOT.pom
+    - arrow-dataset-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-dataset-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-dataset-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-dataset-15.0.0-SNAPSHOT-sources.jar
+    - arrow-dataset-15.0.0-SNAPSHOT-tests.jar
+    - arrow-dataset-15.0.0-SNAPSHOT.jar
+    - arrow-dataset-15.0.0-SNAPSHOT.pom
+    - arrow-flight-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-flight-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-flight-15.0.0-SNAPSHOT.pom
+    - arrow-format-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-format-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-format-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-format-15.0.0-SNAPSHOT-sources.jar
+    - arrow-format-15.0.0-SNAPSHOT-tests.jar
+    - arrow-format-15.0.0-SNAPSHOT.jar
+    - arrow-format-15.0.0-SNAPSHOT.pom
+    - arrow-gandiva-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-gandiva-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-gandiva-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-gandiva-15.0.0-SNAPSHOT-sources.jar
+    - arrow-gandiva-15.0.0-SNAPSHOT-tests.jar
+    - arrow-gandiva-15.0.0-SNAPSHOT.jar
+    - arrow-gandiva-15.0.0-SNAPSHOT.pom
+    - arrow-java-root-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-java-root-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-java-root-15.0.0-SNAPSHOT-source-release.zip
+    - arrow-java-root-15.0.0-SNAPSHOT.pom
+    - arrow-jdbc-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-jdbc-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-jdbc-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-jdbc-15.0.0-SNAPSHOT-sources.jar
+    - arrow-jdbc-15.0.0-SNAPSHOT-tests.jar
+    - arrow-jdbc-15.0.0-SNAPSHOT.jar
+    - arrow-jdbc-15.0.0-SNAPSHOT.pom
+    - arrow-memory-core-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-memory-core-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-memory-core-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-memory-core-15.0.0-SNAPSHOT-sources.jar
+    - arrow-memory-core-15.0.0-SNAPSHOT-tests.jar
+    - arrow-memory-core-15.0.0-SNAPSHOT.jar
+    - arrow-memory-core-15.0.0-SNAPSHOT.pom
+    - arrow-memory-netty-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-memory-netty-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-memory-netty-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-memory-netty-15.0.0-SNAPSHOT-sources.jar
+    - arrow-memory-netty-15.0.0-SNAPSHOT-tests.jar
+    - arrow-memory-netty-15.0.0-SNAPSHOT.jar
+    - arrow-memory-netty-15.0.0-SNAPSHOT.pom
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT-sources.jar
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT-tests.jar
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT.jar
+    - arrow-memory-unsafe-15.0.0-SNAPSHOT.pom
+    - arrow-memory-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-memory-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-memory-15.0.0-SNAPSHOT.pom
+    - arrow-orc-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-orc-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-orc-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-orc-15.0.0-SNAPSHOT-sources.jar
+    - arrow-orc-15.0.0-SNAPSHOT-tests.jar
+    - arrow-orc-15.0.0-SNAPSHOT.jar
+    - arrow-orc-15.0.0-SNAPSHOT.pom
+    - arrow-performance-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-performance-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-performance-15.0.0-SNAPSHOT-sources.jar
+    - arrow-performance-15.0.0-SNAPSHOT-tests.jar
+    - arrow-performance-15.0.0-SNAPSHOT.jar
+    - arrow-performance-15.0.0-SNAPSHOT.pom
+    - arrow-tools-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-tools-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-tools-15.0.0-SNAPSHOT-jar-with-dependencies.jar
+    - arrow-tools-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-tools-15.0.0-SNAPSHOT-sources.jar
+    - arrow-tools-15.0.0-SNAPSHOT-tests.jar
+    - arrow-tools-15.0.0-SNAPSHOT.jar
+    - arrow-tools-15.0.0-SNAPSHOT.pom
+    - arrow-vector-15.0.0-SNAPSHOT-cyclonedx.json
+    - arrow-vector-15.0.0-SNAPSHOT-cyclonedx.xml
+    - arrow-vector-15.0.0-SNAPSHOT-javadoc.jar
+    - arrow-vector-15.0.0-SNAPSHOT-shade-format-flatbuffers.jar
+    - arrow-vector-15.0.0-SNAPSHOT-sources.jar
+    - arrow-vector-15.0.0-SNAPSHOT-tests.jar
+    - arrow-vector-15.0.0-SNAPSHOT.jar
+    - arrow-vector-15.0.0-SNAPSHOT.pom
+    - flight-core-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-core-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-core-15.0.0-SNAPSHOT-jar-with-dependencies.jar
+    - flight-core-15.0.0-SNAPSHOT-javadoc.jar
+    - flight-core-15.0.0-SNAPSHOT-shaded-ext.jar
+    - flight-core-15.0.0-SNAPSHOT-shaded.jar
+    - flight-core-15.0.0-SNAPSHOT-sources.jar
+    - flight-core-15.0.0-SNAPSHOT-tests.jar
+    - flight-core-15.0.0-SNAPSHOT.jar
+    - flight-core-15.0.0-SNAPSHOT.pom
+    - flight-grpc-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-grpc-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-grpc-15.0.0-SNAPSHOT-javadoc.jar
+    - flight-grpc-15.0.0-SNAPSHOT-sources.jar
+    - flight-grpc-15.0.0-SNAPSHOT-tests.jar
+    - flight-grpc-15.0.0-SNAPSHOT.jar
+    - flight-grpc-15.0.0-SNAPSHOT.pom
+    - flight-integration-tests-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-integration-tests-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-integration-tests-15.0.0-SNAPSHOT-jar-with-dependencies.jar
+    - flight-integration-tests-15.0.0-SNAPSHOT-javadoc.jar
+    - flight-integration-tests-15.0.0-SNAPSHOT-sources.jar
+    - flight-integration-tests-15.0.0-SNAPSHOT-tests.jar
+    - flight-integration-tests-15.0.0-SNAPSHOT.jar
+    - flight-integration-tests-15.0.0-SNAPSHOT.pom
+    - flight-sql-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-sql-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-sql-15.0.0-SNAPSHOT-javadoc.jar
+    - flight-sql-15.0.0-SNAPSHOT-sources.jar
+    - flight-sql-15.0.0-SNAPSHOT-tests.jar
+    - flight-sql-15.0.0-SNAPSHOT.jar
+    - flight-sql-15.0.0-SNAPSHOT.pom
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT-javadoc.jar
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT-sources.jar
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT-tests.jar
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT.jar
+    - flight-sql-jdbc-core-15.0.0-SNAPSHOT.pom
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT-cyclonedx.json
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT-cyclonedx.xml
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT-sources.jar
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT-tests.jar
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT.jar
+    - flight-sql-jdbc-driver-15.0.0-SNAPSHOT.pom
+    params: {}
+    branch: actions-53621e6da1-github-java-jars
+    commit: cb4700a557ce2ffac51f483d63405d66166d2c9b
+  test-ubuntu-22.04-cpp-20: !Task
+    name: test-ubuntu-22.04-cpp-20
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e CMAKE_CXX_STANDARD=20
+      image: ubuntu-cpp
+
+    branch: actions-53621e6da1-github-test-ubuntu-22.04-cpp-20
+    commit: 48298ad32f0f4d0e4352600ef9a3c17425710c95
+  test-cuda-cpp: !Task
+    name: test-cuda-cpp
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-cpp
+
+    branch: actions-53621e6da1-github-test-cuda-cpp
+    commit: 2048eb1ac0177db0fcb3e280117cedbc5ebc319d
+  test-build-cpp-fuzz: !Task
+    name: test-build-cpp-fuzz
+    ci: github
+    template: fuzz-tests/github.oss-fuzz.yml
+    artifacts: []
+    params: {}
+    branch: actions-53621e6da1-github-test-build-cpp-fuzz
+    commit: bc6f400cea3b20c8bd903d539ba7063447a751f1
+  test-debian-11-cpp-i386: !Task
+    name: test-debian-11-cpp-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: '11'
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-cpp
+
+    branch: actions-53621e6da1-github-test-debian-11-cpp-i386
+    commit: 4074903d574441cb4ca1939ad7327c29fb048973
+  test-ubuntu-22.04-cpp: !Task
+    name: test-ubuntu-22.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '22.04'
+      image: ubuntu-cpp
+
+    branch: actions-53621e6da1-github-test-ubuntu-22.04-cpp
+    commit: f783bca2db0c357d5889be684aeada2f6158db48
+  test-fedora-38-cpp: !Task
+    name: test-fedora-38-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 38
+      image: fedora-cpp
+
+    branch: actions-53621e6da1-github-test-fedora-38-cpp
+    commit: 252e2f136d06393ff401bb5ff8950e2b9eb0355a
+  test-ubuntu-20.04-cpp: !Task
+    name: test-ubuntu-20.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      image: ubuntu-cpp
+    branch: actions-53621e6da1-github-test-ubuntu-20.04-cpp
+    commit: 99ab3b7545eed486b3a3ed730d6050f743bc684a
+  test-debian-11-cpp-amd64: !Task
+    name: test-debian-11-cpp-amd64
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: amd64
+        DEBIAN: '11'
+      image: debian-cpp
+
+    branch: actions-53621e6da1-github-test-debian-11-cpp-amd64
+    commit: 03ff3aa48af2cfd6e14f6a198c5a6b8137845325
+  test-ubuntu-20.04-cpp-bundled: !Task
+    name: test-ubuntu-20.04-cpp-bundled
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-cpp-bundled
+
+    branch: actions-53621e6da1-github-test-ubuntu-20.04-cpp-bundled
+    commit: 2509e22d8e4aaf32f20c4bccf67f8973504b413b
+params:
+  pr_number: 39137
+branch: actions-53621e6da1
