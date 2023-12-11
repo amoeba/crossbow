@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 0a40e745e5eb7653de6a163d52cb68f58d067ceb
+  email: unknown
+  branch: spelling-contrib
+  remote: https://github.com/jsoref/apache-arrow.git
+  github_repo: jsoref/apache-arrow
+  version: 15.0.0.dev177
+  r_version: 14.0.1.100000177
+  no_rc_version: 15.0.0.dev177
+  no_rc_r_version: 14.0.1.100000177
+  no_rc_semver_version: 15.0.0-dev177
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-3de9367f00-github-preview-docs
+    commit: ce7a53046b0f3278fd2b0e3140fca659b574306e
+params:
+  pr_number: 39032
+branch: actions-3de9367f00
