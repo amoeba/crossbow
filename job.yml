@@ -1,0 +1,188 @@
+!Job
+target: !Target
+  head: 0b9c1e06ee5612506f17f14cb7a253cddf8886ce
+  email: unknown
+  branch: release-14.0.2-rc2
+  remote: https://github.com/apache/arrow.git
+  github_repo: apache/arrow
+  version: 15.0.2.dev0
+  r_version: 14.0.2
+  no_rc_version: 15.0.2.dev0
+  no_rc_r_version: 14.0.2
+  no_rc_semver_version: 15.0.2-dev0
+  no_rc_snapshot_version: 15.0.2-SNAPSHOT
+tasks:
+  verify-rc-binaries-binary-linux-amd64: !Task
+    name: verify-rc-binaries-binary-linux-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.yml
+    artifacts: []
+    params:
+      target: binary
+    branch: actions-487ae96a0e-github-verify-rc-binaries-binary-linux-amd64
+    commit: 0eec41566ba2757b697cb62dd953bd609fdfae7b
+  verify-rc-binaries-wheels-linux-ubuntu-22.04-amd64: !Task
+    name: verify-rc-binaries-wheels-linux-ubuntu-22.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+
+  # Separated these tasks from the loop above due to:
+  # - 'binary' verification is not platform dependent
+  # - 'yum' and 'apt' requires docker so we need to run the verification script
+  #   directly on the host
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-linux-ubuntu-22.04-amd64
+    commit: c79c50b874546d844e5d9de3f3175f907088ee93
+  verify-rc-binaries-yum-linux-amd64: !Task
+    name: verify-rc-binaries-yum-linux-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.yml
+    artifacts: []
+    params:
+      target: yum
+    branch: actions-487ae96a0e-github-verify-rc-binaries-yum-linux-amd64
+    commit: 9a94054e7e9291b8796ceb6517572cfeaeabe808
+  verify-rc-binaries-wheels-macos-12-amd64: !Task
+    name: verify-rc-binaries-wheels-macos-12-amd64
+    ci: github
+    template: verify-rc/github.macos.amd64.yml
+    artifacts: []
+    params:
+      github_runner: macos-12
+      target: wheels
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-macos-12-amd64
+    commit: e9eda510e248c05c11d5ed172804bdf311e199a0
+  verify-rc-binaries-jars-linux-conda-latest-amd64: !Task
+    name: verify-rc-binaries-jars-linux-conda-latest-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: conda
+    branch: actions-487ae96a0e-github-verify-rc-binaries-jars-linux-conda-latest-amd64
+    commit: 9ada56bc42a6ed3db2c73d7a26c39e4ad724f3d9
+  verify-rc-binaries-jars-linux-ubuntu-22.04-amd64: !Task
+    name: verify-rc-binaries-jars-linux-ubuntu-22.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: ubuntu
+    branch: actions-487ae96a0e-github-verify-rc-binaries-jars-linux-ubuntu-22.04-amd64
+    commit: 817b0e37567567c3cdc6de50661cf98c34da87cc
+  verify-rc-binaries-wheels-macos-11-amd64: !Task
+    name: verify-rc-binaries-wheels-macos-11-amd64
+    ci: github
+    template: verify-rc/github.macos.amd64.yml
+    artifacts: []
+    params:
+      github_runner: macos-11
+      target: wheels
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-macos-11-amd64
+    commit: 3794f6446916fc81cb975e7f5b2876b566a08671
+  verify-rc-binaries-jars-linux-almalinux-8-amd64: !Task
+    name: verify-rc-binaries-jars-linux-almalinux-8-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: almalinux
+    branch: actions-487ae96a0e-github-verify-rc-binaries-jars-linux-almalinux-8-amd64
+    commit: f6e602468be301a9f433b080731929696111451c
+  verify-rc-binaries-wheels-linux-almalinux-8-amd64: !Task
+    name: verify-rc-binaries-wheels-linux-almalinux-8-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: almalinux
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-linux-almalinux-8-amd64
+    commit: bb2bf9066487b92713c63560b276a1129360fc36
+  verify-rc-binaries-wheels-linux-conda-latest-amd64: !Task
+    name: verify-rc-binaries-wheels-linux-conda-latest-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: conda
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-linux-conda-latest-amd64
+    commit: cd13411d7e9e97c05a94d95250d25a286b724bce
+  verify-rc-binaries-wheels-macos-11-arm64: !Task
+    name: verify-rc-binaries-wheels-macos-11-arm64
+    ci: github
+    template: verify-rc/github.macos.arm64.yml
+    artifacts: []
+    params:
+      env:
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      github_runner: [self-hosted, macOS, arm64]
+      target: wheels
+
+  ######################## Windows verification ##############################
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-macos-11-arm64
+    commit: d84e4641b4da707d64157eab98e4724759d03609
+  verify-rc-binaries-jars-linux-ubuntu-20.04-amd64: !Task
+    name: verify-rc-binaries-jars-linux-ubuntu-20.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: ubuntu
+    branch: actions-487ae96a0e-github-verify-rc-binaries-jars-linux-ubuntu-20.04-amd64
+    commit: 817b0e37567567c3cdc6de50661cf98c34da87cc
+  verify-rc-binaries-wheels-windows: !Task
+    name: verify-rc-binaries-wheels-windows
+    ci: github
+    template: verify-rc/github.win.yml
+    artifacts: []
+    params:
+      env:
+        PYARROW_TEST_GDB: OFF
+      script: verify-release-candidate-wheels.bat
+
+############################## Docker tests ##################################
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-windows
+    commit: 694c0979e12d6cc19324fdb805330a79d43742da
+  verify-rc-binaries-apt-linux-amd64: !Task
+    name: verify-rc-binaries-apt-linux-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.yml
+    artifacts: []
+    params:
+      target: apt
+
+  ######################## macOS verification ################################
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-apt-linux-amd64
+    commit: bcccbb1118b4400fe1cc3f41db5024e957e55853
+  verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64: !Task
+    name: verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+    branch: actions-487ae96a0e-github-verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64
+    commit: c79c50b874546d844e5d9de3f3175f907088ee93
+params:
+  release: 14.0.2
+  rc: '2'
+  pr_number: 39155
+branch: actions-487ae96a0e
