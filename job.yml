@@ -1,0 +1,95 @@
+!Job
+target: !Target
+  head: 49a978fcef620e6c2f9d68cf3b9ebae03c5a1020
+  email: unknown
+  branch: gh-33984-dlpack-producer
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 15.0.0.dev245
+  r_version: 14.0.1.100000245
+  no_rc_version: 15.0.0.dev245
+  no_rc_r_version: 14.0.1.100000245
+  no_rc_semver_version: 15.0.0-dev245
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-cuda-cpp: !Task
+    name: test-cuda-cpp
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-cpp
+
+    branch: actions-b8525f4884-github-test-cuda-cpp
+    commit: aae6c5a1ab83926be90a0761104474084c59042f
+  conda-win-x64-cuda-py3: !Task
+    name: conda-win-x64-cuda-py3
+    ci: azure
+    template: conda-recipes/azure.win.yml
+    artifacts:
+    - libarrow-15.0.0.dev245-(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py38(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py39(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py310(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py311(h[a-z0-9]+)_0_cuda.conda
+    params:
+      config: win_64_cuda_compiler_version11.2
+    branch: actions-b8525f4884-azure-conda-win-x64-cuda-py3
+    commit: aec2d121da70de3fa0225a2881d304b92cfce359
+  conda-linux-x64-cuda-py3: !Task
+    name: conda-linux-x64-cuda-py3
+    ci: azure
+    template: conda-recipes/azure.linux.yml
+    artifacts:
+    - libarrow-15.0.0.dev245-(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py38(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py39(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py310(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py311(h[a-z0-9]+)_0_cuda.conda
+    params:
+      config: linux_64_cuda_compiler_version11.2
+    branch: actions-b8525f4884-azure-conda-linux-x64-cuda-py3
+    commit: c5d1f9eabfe178afd16473b35367b2ed56bb8dcd
+  conda-linux-aarch64-cuda-py3: !Task
+    name: conda-linux-aarch64-cuda-py3
+    ci: azure
+    template: conda-recipes/azure.linux.yml
+    artifacts:
+    - libarrow-15.0.0.dev245-(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py38(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py39(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py310(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py311(h[a-z0-9]+)_0_cuda.conda
+    params:
+      config: linux_aarch64_cuda_compiler_version11.2
+    branch: actions-b8525f4884-azure-conda-linux-aarch64-cuda-py3
+    commit: 616f46d53a8da532906a216b20e1ffe6a588a823
+  conda-linux-ppc64le-cuda-py3: !Task
+    name: conda-linux-ppc64le-cuda-py3
+    ci: azure
+    template: conda-recipes/azure.linux.yml
+    artifacts:
+    - libarrow-15.0.0.dev245-(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py38(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py39(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py310(h[a-z0-9]+)_0_cuda.conda
+    - pyarrow-15.0.0.dev245-py311(h[a-z0-9]+)_0_cuda.conda
+    params:
+      config: linux_ppc64le_cuda_compiler_version11.2
+    branch: actions-b8525f4884-azure-conda-linux-ppc64le-cuda-py3
+    commit: fdcbfa82ec1c41132141eca2d9d080d80ed1170c
+  test-cuda-python: !Task
+    name: test-cuda-python
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-python
+
+  ############################## Fuzz tests #################################
+
+    branch: actions-b8525f4884-github-test-cuda-python
+    commit: 092424c6adc6f996847226509b6ee2c7a6c70d24
+params:
+  pr_number: 38472
+branch: actions-b8525f4884
