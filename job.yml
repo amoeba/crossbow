@@ -1,0 +1,242 @@
+!Job
+target: !Target
+  head: e2ee3d31a663222d6c97feb20bff106908052321
+  email: unknown
+  branch: cpp-list-view-if-constexpr
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 15.0.0.dev305
+  r_version: 14.0.2.100000305
+  no_rc_version: 15.0.0.dev305
+  no_rc_r_version: 14.0.2.100000305
+  no_rc_semver_version: 15.0.0-dev305
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-cuda-cpp: !Task
+    name: test-cuda-cpp
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-cpp
+
+    branch: actions-0dda7a7461-github-test-cuda-cpp
+    commit: d8f6628af0a7f69b9ef0a7edf61112eef1047dbc
+  test-fedora-38-cpp: !Task
+    name: test-fedora-38-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 38
+      image: fedora-cpp
+
+    branch: actions-0dda7a7461-github-test-fedora-38-cpp
+    commit: c97030040fdf44f6e3d90e859417f9e97eaf7479
+  test-conda-cpp-valgrind: !Task
+    name: test-conda-cpp-valgrind
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-0dda7a7461-azure-test-conda-cpp-valgrind
+    commit: 304e2a5384fe9c16d1d197cf0934e21311580ab4
+  test-ubuntu-22.04-cpp-20: !Task
+    name: test-ubuntu-22.04-cpp-20
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e CMAKE_CXX_STANDARD=20
+      image: ubuntu-cpp
+
+    branch: actions-0dda7a7461-github-test-ubuntu-22.04-cpp-20
+    commit: efe6bea71bc63564e0146dd4933dd049aae179fe
+  wheel-windows-cp39-amd64: !Task
+    name: wheel-windows-cp39-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev305-cp39-cp39-win_amd64.whl
+    params:
+      python_version: '3.9'
+    branch: actions-0dda7a7461-github-wheel-windows-cp39-amd64
+    commit: ac7e850dd5464e4c4444ac1646513f6ec60d5050
+  test-ubuntu-20.04-cpp: !Task
+    name: test-ubuntu-20.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      image: ubuntu-cpp
+    branch: actions-0dda7a7461-github-test-ubuntu-20.04-cpp
+    commit: 905788d4a526f0971d1649a9880e51b3836dd838
+  test-debian-11-cpp-i386: !Task
+    name: test-debian-11-cpp-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: '11'
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-cpp
+
+    branch: actions-0dda7a7461-github-test-debian-11-cpp-i386
+    commit: 0a42ef4c67608c01d1de8106853e190e2c6a7763
+  test-conda-cpp: !Task
+    name: test-conda-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp
+    branch: actions-0dda7a7461-github-test-conda-cpp
+    commit: 12a6ceb90095360705866de1998e8d92961097c9
+  test-debian-11-cpp-amd64: !Task
+    name: test-debian-11-cpp-amd64
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: amd64
+        DEBIAN: '11'
+      image: debian-cpp
+
+    branch: actions-0dda7a7461-github-test-debian-11-cpp-amd64
+    commit: 5d5db054c74db887289921c149a54a7fa86343c4
+  wheel-windows-cp312-amd64: !Task
+    name: wheel-windows-cp312-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev305-cp312-cp312-win_amd64.whl
+    params:
+      python_version: '3.12'
+    branch: actions-0dda7a7461-github-wheel-windows-cp312-amd64
+    commit: dc6a6abb44c8ab4ff1c6e82710236277b7913c57
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    name: test-ubuntu-20.04-cpp-thread-sanitizer
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-0dda7a7461-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: 68d0e62f0269ed556acd00d2133c8dbad87c7b36
+  test-build-cpp-fuzz: !Task
+    name: test-build-cpp-fuzz
+    ci: github
+    template: fuzz-tests/github.oss-fuzz.yml
+    artifacts: []
+    params: {}
+    branch: actions-0dda7a7461-github-test-build-cpp-fuzz
+    commit: eb74a2c12acc7ded5cc98c4b9f21f985766541d7
+  test-ubuntu-22.04-cpp: !Task
+    name: test-ubuntu-22.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '22.04'
+      image: ubuntu-cpp
+
+    branch: actions-0dda7a7461-github-test-ubuntu-22.04-cpp
+    commit: 21ea35b6cf36e2891a9d680ab570db01efa3cf27
+  test-ubuntu-22.04-cpp-no-threading: !Task
+    name: test-ubuntu-22.04-cpp-no-threading
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e ARROW_ENABLE_THREADING=OFF
+      image: ubuntu-cpp
+
+    branch: actions-0dda7a7461-github-test-ubuntu-22.04-cpp-no-threading
+    commit: 97df5a45a60e90b15cd03c8c2e5079703360d3b4
+  test-ubuntu-20.04-cpp-minimal-with-formats: !Task
+    name: test-ubuntu-20.04-cpp-minimal-with-formats
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e ARROW_CSV=ON -e ARROW_PARQUET=ON
+      image: ubuntu-cpp-minimal
+
+    branch: actions-0dda7a7461-github-test-ubuntu-20.04-cpp-minimal-with-formats
+    commit: ccd43465c60890f5f933ed4a5516c439b2c3904e
+  wheel-windows-cp310-amd64: !Task
+    name: wheel-windows-cp310-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev305-cp310-cp310-win_amd64.whl
+    params:
+      python_version: '3.10'
+    branch: actions-0dda7a7461-github-wheel-windows-cp310-amd64
+    commit: b71d991c6c8082dea2438178936bd843bc7fab98
+  wheel-windows-cp311-amd64: !Task
+    name: wheel-windows-cp311-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev305-cp311-cp311-win_amd64.whl
+    params:
+      python_version: '3.11'
+    branch: actions-0dda7a7461-github-wheel-windows-cp311-amd64
+    commit: 919548171d9902488f3ff12f76b45561291dcf2d
+  wheel-windows-cp38-amd64: !Task
+    name: wheel-windows-cp38-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev305-cp38-cp38-win_amd64.whl
+    params:
+      python_version: '3.8'
+    branch: actions-0dda7a7461-github-wheel-windows-cp38-amd64
+    commit: b86c86f0928d12f6e4e685a5fa40c330627cb48d
+  test-alpine-linux-cpp: !Task
+    name: test-alpine-linux-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: alpine-linux-cpp
+    branch: actions-0dda7a7461-github-test-alpine-linux-cpp
+    commit: a68e1ba782b418ad261502fad93ecb8574c9cdac
+  test-ubuntu-20.04-cpp-bundled: !Task
+    name: test-ubuntu-20.04-cpp-bundled
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-cpp-bundled
+
+    branch: actions-0dda7a7461-github-test-ubuntu-20.04-cpp-bundled
+    commit: 92a4fc86de7d64ef809a8edac822b59d049753ea
+params:
+  pr_number: 39334
+branch: actions-0dda7a7461
