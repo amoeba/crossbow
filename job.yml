@@ -1,0 +1,339 @@
+!Job
+target: !Target
+  head: 184ac9ac512c615e5e89cdea962f5f7baf930fcb
+  email: unknown
+  branch: GH-39350
+  remote: https://github.com/raulcd/arrow.git
+  github_repo: raulcd/arrow
+  version: 15.0.0.dev315
+  r_version: 14.0.2.100000315
+  no_rc_version: 15.0.0.dev315
+  no_rc_r_version: 14.0.2.100000315
+  no_rc_semver_version: 15.0.0-dev315
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-r-linux-valgrind: !Task
+    name: test-r-linux-valgrind
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_R_DEV: 'TRUE'
+      image: ubuntu-r-valgrind
+
+    branch: actions-439829558f-azure-test-r-linux-valgrind
+    commit: a482e3cb6dbdad20ddcd68263134ea74d26d332a
+  test-fedora-r-clang-sanitizer: !Task
+    name: test-fedora-r-clang-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-439829558f-azure-test-fedora-r-clang-sanitizer
+    commit: 16963a34a9ac5572b440846625a6a46a3206f184
+  test-r-dev-duckdb: !Task
+    name: test-r-dev-duckdb
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_DUCKDB_DEV: true
+      image: ubuntu-r-only-r
+
+    branch: actions-439829558f-github-test-r-dev-duckdb
+    commit: c448471d8cfc54d5edb8c0acf340e80e1a7c51c8
+  test-r-minimal-build: !Task
+    name: test-r-minimal-build
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e LIBARROW_MINIMAL=TRUE
+
+    branch: actions-439829558f-azure-test-r-minimal-build
+    commit: e89322d210b08f0651e63ffc92c6ff7c53161484
+  test-r-gcc-11: !Task
+    name: test-r-gcc-11
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        GCC_VERSION: 11
+      image: ubuntu-r-only-r
+
+  # This also has -flto=auto
+    branch: actions-439829558f-github-test-r-gcc-11
+    commit: 1505df343070ef0a7ea331af286eed4304ca49d6
+  test-r-offline-maximal: !Task
+    name: test-r-offline-maximal
+    ci: github
+    template: r/github.linux.offline.build.yml
+    artifacts: []
+    params: {}
+    branch: actions-439829558f-github-test-r-offline-maximal
+    commit: 3b4377c603eafaa599f4ee39930b1645303a0c5d
+  test-r-rhub-ubuntu-gcc-release-latest: !Task
+    name: test-r-rhub-ubuntu-gcc-release-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: ubuntu-gcc-release
+      r_tag: latest
+    branch: actions-439829558f-azure-test-r-rhub-ubuntu-gcc-release-latest
+    commit: 552d7dd1aff2b87e54dfa926e3978c61d25d61e8
+  test-r-linux-rchk: !Task
+    name: test-r-linux-rchk
+    ci: github
+    template: r/github.linux.rchk.yml
+    artifacts: []
+    params: {}
+    branch: actions-439829558f-github-test-r-linux-rchk
+    commit: 3ee587c9386db037146ff760f7c59b100fd0add3
+  test-r-rhub-debian-gcc-release-custom-ccache: !Task
+    name: test-r-rhub-debian-gcc-release-custom-ccache
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-release
+      r_tag: latest
+      r_custom_ccache: true
+
+    branch: actions-439829558f-azure-test-r-rhub-debian-gcc-release-custom-ccache
+    commit: 0a919b79a8bf072b9a6b77fca0882813e238c9bd
+  test-r-devdocs: !Task
+    name: test-r-devdocs
+    ci: github
+    template: r/github.devdocs.yml
+    artifacts: []
+    params: {}
+    branch: actions-439829558f-github-test-r-devdocs
+    commit: f70b77b1ad4466fb8dc65ce6cc1ef6667cac5fb9
+  test-r-ubuntu-22.04: !Task
+    name: test-r-ubuntu-22.04
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-only-r
+
+  # This also has -flto=auto
+    branch: actions-439829558f-github-test-r-ubuntu-22.04
+    commit: 20e10f764b6cfa9a284dde275feb1979763d971c
+  test-r-install-local: !Task
+    name: test-r-install-local
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params: {}
+    branch: actions-439829558f-github-test-r-install-local
+    commit: 9ce956005490724c6f481b883d437e3860c39adc
+  test-r-offline-minimal: !Task
+    name: test-r-offline-minimal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e TEST_OFFLINE_BUILD=true
+
+    branch: actions-439829558f-azure-test-r-offline-minimal
+    commit: c5d264e61d2db99b2802ec7196c67422a1f0f221
+  test-r-rstudio-r-base-4.2-centos7-devtoolset-8: !Task
+    name: test-r-rstudio-r-base-4.2-centos7-devtoolset-8
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.2-centos7
+      devtoolset_version: 8
+
+    branch: actions-439829558f-azure-test-r-rstudio-r-base-4.2-centos7-devtoolset-8
+    commit: c422a988984ff92c4864c7dd6b24ba2bbfa97413
+  test-r-depsource-system: !Task
+    name: test-r-depsource-system
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      flags: -e ARROW_DEPENDENCY_SOURCE=SYSTEM -e ARROW_GCS=OFF -e xsimd_SOURCE=BUNDLED
+      image: ubuntu-r-only-r
+
+    branch: actions-439829558f-github-test-r-depsource-system
+    commit: ba3dcc7bb71165d6049e39400f17a723ab7d53fc
+  test-r-install-local-minsizerel: !Task
+    name: test-r-install-local-minsizerel
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params:
+      env:
+        CMAKE_BUILD_TYPE: MinSizeRel
+
+    branch: actions-439829558f-github-test-r-install-local-minsizerel
+    commit: a06f9a3a21884a0062e2528ddddeb5c13f40031e
+  test-r-rhub-debian-gcc-devel-lto-latest: !Task
+    name: test-r-rhub-debian-gcc-devel-lto-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-devel-lto
+      r_tag: latest
+      flags: -e NOT_CRAN=false -e INSTALL_ARGS=--use-LTO
+
+  # This one has -flto=auto
+    branch: actions-439829558f-azure-test-r-rhub-debian-gcc-devel-lto-latest
+    commit: 047debd1100b8fd96558bf27748617179a512ae7
+  r-binary-packages: !Task
+    name: r-binary-packages
+    ci: github
+    template: r/github.packages.yml
+    artifacts:
+    - r-lib__libarrow__bin__windows__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.0__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.1__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__linux-openssl-3.0__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-1.1__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-3.0__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-1.1__arrow-14.0.2.100000315\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-3.0__arrow-14.0.2.100000315\.zip
+    - r-pkg__bin__windows__contrib__4.3__arrow_14.0.2.100000315\.zip
+    - r-pkg__bin__windows__contrib__4.2__arrow_14.0.2.100000315\.zip
+    - r-pkg__bin__macosx__big-sur-x86_64__contrib__4.3__arrow_14.0.2.100000315\.tgz
+    - r-pkg__bin__macosx__contrib__4.2__arrow_14.0.2.100000315\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.3__arrow_14.0.2.100000315\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.2__arrow_14.0.2.100000315\.tgz
+    - r-pkg__src__contrib__arrow_14.0.2.100000315\.tar\.gz
+    params:
+      custom_version: Unset
+    branch: actions-439829558f-github-r-binary-packages
+    commit: 283f10d4e0184fa65e9c8de1aa03ecb1fa902edd
+  test-ubuntu-r-sanitizer: !Task
+    name: test-ubuntu-r-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-439829558f-azure-test-ubuntu-r-sanitizer
+    commit: b95d0e30f7796f51dff5561ca526caccf2e53fb0
+  test-r-rstudio-r-base-4.1-opensuse153: !Task
+    name: test-r-rstudio-r-base-4.1-opensuse153
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.1-opensuse153
+
+  # This is with R built with --enable-lto
+  # CRAN also does R CMD INSTALL --use-LTO
+  # which overrides the UseLTO field in r/DESCRIPTION
+    branch: actions-439829558f-azure-test-r-rstudio-r-base-4.1-opensuse153
+    commit: 2be07105c5bcc98f57a4198a4a531180a9e87151
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: actions-439829558f-azure-test-r-depsource-bundled
+    commit: c738ca5aef69e4dc46918c97d3370517912ca5d1
+  test-r-gcc-12: !Task
+    name: test-r-gcc-12
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        GCC_VERSION: 12
+      image: ubuntu-r-only-r
+
+    branch: actions-439829558f-github-test-r-gcc-12
+    commit: 86320eca0f99fa3d4fe369c106f52b67cbfe9582
+  test-r-library-r-base-latest: !Task
+    name: test-r-library-r-base-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+    branch: actions-439829558f-azure-test-r-library-r-base-latest
+    commit: b8f6a5c18a99f7bb73b341a87f8bc3277031447f
+  test-r-rstudio-r-base-4.2-focal: !Task
+    name: test-r-rstudio-r-base-4.2-focal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.2-focal
+    branch: actions-439829558f-azure-test-r-rstudio-r-base-4.2-focal
+    commit: 8326ad43e6cdbb12a0cedd3d25c2ec74548e0802
+  test-r-versions: !Task
+    name: test-r-versions
+    ci: github
+    template: r/github.linux.versions.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_version }}
+
+    branch: actions-439829558f-github-test-r-versions
+    commit: c9f833a162c5426a7cba436fb4978804b91067b8
+  test-r-arrow-backwards-compatibility: !Task
+    name: test-r-arrow-backwards-compatibility
+    ci: github
+    template: r/github.linux.arrow.version.back.compat.yml
+    artifacts: []
+    params: {}
+    branch: actions-439829558f-github-test-r-arrow-backwards-compatibility
+    commit: c433c3d7e7052d80968043d4f1d7ff24fee85d43
+  test-r-linux-as-cran: !Task
+    name: test-r-linux-as-cran
+    ci: github
+    template: r/github.linux.cran.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_image }}
+
+    branch: actions-439829558f-github-test-r-linux-as-cran
+    commit: 0b5ea1430afe96989ea055c9984d4946e400a85c
+params:
+  pr_number: 39351
+branch: actions-439829558f
