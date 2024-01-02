@@ -1,0 +1,63 @@
+!Job
+target: !Target
+  head: 5bfa30a07262344a1d134f876911d161e0c347dc
+  email: unknown
+  branch: GH-39421
+  remote: https://github.com/raulcd/arrow.git
+  github_repo: raulcd/arrow
+  version: 15.0.0.dev340
+  r_version: 14.0.2.100000340
+  no_rc_version: 15.0.0.dev340
+  no_rc_r_version: 14.0.2.100000340
+  no_rc_semver_version: 15.0.0-dev340
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-c-glib: !Task
+    name: test-ubuntu-c-glib
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: ubuntu-c-glib
+    branch: actions-546e220e90-github-test-ubuntu-c-glib
+    commit: 9e401348d5a53fbd83e0b2f8f0de66e165d35431
+  test-ubuntu-ruby: !Task
+    name: test-ubuntu-ruby
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: ubuntu-ruby
+
+  # Use azure to run valgrind tests to prevent OOM
+    branch: actions-546e220e90-github-test-ubuntu-ruby
+    commit: c80198914f813bc8be3b653c0c69b5f1213c0a02
+  test-debian-ruby: !Task
+    name: test-debian-ruby
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: debian-ruby
+    branch: actions-546e220e90-github-test-debian-ruby
+    commit: d68d5f524d1a9fbffb2e93f5b7e6a5c969c9b641
+  test-debian-c-glib: !Task
+    name: test-debian-c-glib
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: debian-c-glib
+    branch: actions-546e220e90-github-test-debian-c-glib
+    commit: 471c3302d034a3ba3c2baf1ef94e2613c0f7e651
+params:
+  pr_number: 39422
+branch: actions-546e220e90
