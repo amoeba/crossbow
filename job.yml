@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 2722d95a20569daeaa869c39ce1e9de2beddcf5e
+  email: unknown
+  branch: gh-39468
+  remote: https://github.com/lidavidm/arrow.git
+  github_repo: lidavidm/arrow
+  version: 15.0.0.dev356
+  r_version: 14.0.2.100000356
+  no_rc_version: 15.0.0.dev356
+  no_rc_r_version: 14.0.2.100000356
+  no_rc_semver_version: 15.0.0-dev356
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-22.04-docs: !Task
+    name: test-ubuntu-22.04-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts:
+    - docs.tar.gz
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: false
+    branch: actions-87099c09b6-github-test-ubuntu-22.04-docs
+    commit: f0e2d398f2eff6bd6a2c5e0aed68663bcd0159fa
+params:
+  pr_number: 39471
+branch: actions-87099c09b6
