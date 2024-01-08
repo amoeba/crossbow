@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 212e0b286b558ef0b7cdf85be24750365b0c143e
+  email: unknown
+  branch: gh-39437_pandas-regression
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 15.0.0.dev374
+  r_version: 14.0.2.100000374
+  no_rc_version: 15.0.0.dev374
+  no_rc_r_version: 14.0.2.100000374
+  no_rc_semver_version: 15.0.0-dev374
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-76a8a06d7c-github-test-conda-python-3.10-pandas-nightly
+    commit: 2563b6e2fe6d9f8b4419b92e97db2f0effcde17f
+params:
+  pr_number: 39498
+branch: actions-76a8a06d7c
