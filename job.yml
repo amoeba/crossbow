@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 5da26cf46c866f6427e9b36f1a72bf4f1dbf0527
+  email: unknown
+  branch: docs-pin-theme
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 15.0.0.dev374
+  r_version: 14.0.2.100000374
+  no_rc_version: 15.0.0.dev374
+  no_rc_r_version: 14.0.2.100000374
+  no_rc_semver_version: 15.0.0-dev374
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-22.04-docs: !Task
+    name: test-ubuntu-22.04-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts:
+    - docs.tar.gz
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: false
+    branch: actions-76eacbf1ff-github-test-ubuntu-22.04-docs
+    commit: 04f44a02cb762f51430de94ddd0913f5a5a447e7
+params:
+  pr_number: 39501
+branch: actions-76eacbf1ff
