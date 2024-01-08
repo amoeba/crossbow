@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 7418f1279ea75c482df1f38589fb56b2bf2b73e5
+  email: unknown
+  branch: GH-39469
+  remote: https://github.com/raulcd/arrow.git
+  github_repo: raulcd/arrow
+  version: 15.0.0.dev373
+  r_version: 14.0.2.100000373
+  no_rc_version: 15.0.0.dev373
+  no_rc_r_version: 14.0.2.100000373
+  no_rc_semver_version: 15.0.0-dev373
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  verify-rc-source-integration-macos-arm64: !Task
+    name: verify-rc-source-integration-macos-arm64
+    ci: github
+    template: verify-rc/github.macos.arm64.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_FLIGHT: 0
+        ARROW_GANDIVA: 0
+        TEST_INTEGRATION_JAVA: 0
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      target: integration
+      github_runner: [self-hosted, macOS, arm64]
+    branch: actions-940726ec0e-github-verify-rc-source-integration-macos-arm64
+    commit: 95d369448fde715643b7ac118831fdcf41b9bce1
+params:
+  pr_number: 39499
+branch: actions-940726ec0e
