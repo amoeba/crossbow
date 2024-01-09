@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: d5cdfad0f550e6e81c166ffbe8e0c0b9cb4c4caa
+  email: unknown
+  branch: gh-39531_dask-nightly-tests-skip
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 15.0.0.dev395
+  r_version: 14.0.2.100000395
+  no_rc_version: 15.0.0.dev395
+  no_rc_r_version: 14.0.2.100000395
+  no_rc_semver_version: 15.0.0-dev395
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.11-dask-upstream_devel: !Task
+    name: test-conda-python-3.11-dask-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: upstream_devel
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+
+    branch: actions-85103c1f72-github-test-conda-python-3.11-dask-upstream_devel
+    commit: b81ac0dd950049b98a740da0e90853cbb5621038
+params:
+  pr_number: 39534
+branch: actions-85103c1f72
