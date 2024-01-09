@@ -1,0 +1,95 @@
+!Job
+target: !Target
+  head: 4e403be5e2358c89a5bec74c64aa791f52931cc1
+  email: unknown
+  branch: gh-39533-np-core
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 15.0.0.dev396
+  r_version: 14.0.2.100000396
+  no_rc_version: 15.0.0.dev396
+  no_rc_r_version: 14.0.2.100000396
+  no_rc_semver_version: 15.0.0-dev396
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.8-pandas-1.0: !Task
+    name: test-conda-python-3.8-pandas-1.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        PANDAS: '1.0'
+        NUMPY: '1.19'
+      image: conda-python-pandas
+    branch: actions-fbef62db1c-github-test-conda-python-3.8-pandas-1.0
+    commit: 4f05470e0f85279046ab7238430884b959f7567f
+  test-conda-python-3.10-pandas-latest: !Task
+    name: test-conda-python-3.10-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-fbef62db1c-github-test-conda-python-3.10-pandas-latest
+    commit: c93a9e01dc779acc098c9bec41cef42b815a628a
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-fbef62db1c-github-test-conda-python-3.10-pandas-nightly
+    commit: d85b3110a15044859cf59f15b1856fdf476cf4db
+  test-conda-python-3.11-pandas-upstream_devel: !Task
+    name: test-conda-python-3.11-pandas-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        PANDAS: upstream_devel
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+
+    branch: actions-fbef62db1c-github-test-conda-python-3.11-pandas-upstream_devel
+    commit: 4bc73fdcffbc405362f0c79aee38f1be93740e85
+  test-conda-python-3.9-pandas-latest: !Task
+    name: test-conda-python-3.9-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.9'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-fbef62db1c-github-test-conda-python-3.9-pandas-latest
+    commit: a9e6411c3045a3176fce356dd68ee24ac2f82042
+params:
+  pr_number: 39535
+branch: actions-fbef62db1c
