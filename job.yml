@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 1795586586ccb9ca31962f855bb939983abcf9f6
+  email: unknown
+  branch: no-lto-s2n
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 15.0.0.dev393
+  r_version: 14.0.2.100000393
+  no_rc_version: 15.0.0.dev393
+  no_rc_r_version: 14.0.2.100000393
+  no_rc_semver_version: 15.0.0-dev393
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-r-rhub-debian-gcc-devel-lto-latest: !Task
+    name: test-r-rhub-debian-gcc-devel-lto-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-devel-lto
+      r_tag: latest
+      flags: -e NOT_CRAN=false -e INSTALL_ARGS=--use-LTO
+
+  # This one has -flto=auto
+    branch: actions-89de4b20e3-azure-test-r-rhub-debian-gcc-devel-lto-latest
+    commit: 925b80fca22a714c76b086aeed3f91ef412b314b
+params:
+  pr_number: 39524
+branch: actions-89de4b20e3
