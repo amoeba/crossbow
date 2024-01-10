@@ -1,0 +1,797 @@
+!Job
+target: !Target
+  head: 0f648d9a354353ebb7350a9356c67311d4ad8138
+  email: unknown
+  branch: fd-add-type-to-from-array-map-type
+  remote: https://github.com/Fokko/arrow.git
+  github_repo: Fokko/arrow
+  version: 15.0.0.dev386
+  r_version: 14.0.2.100000386
+  no_rc_version: 15.0.0.dev386
+  no_rc_r_version: 14.0.2.100000386
+  no_rc_semver_version: 15.0.0-dev386
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  wheel-manylinux-2014-cp310-amd64: !Task
+    name: wheel-manylinux-2014-cp310-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.10'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_x86_64.manylinux2014_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp310-amd64
+    commit: 322447ae94385e8d8b12e020e178e3633f099a55
+  test-conda-python-3.10-pandas-latest: !Task
+    name: test-conda-python-3.10-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-661760e6ba-github-test-conda-python-3.10-pandas-latest
+    commit: 89599f2b43c4eabcddc8bfe50b03591f20f4ebae
+  wheel-manylinux-2-28-cp38-arm64: !Task
+    name: wheel-manylinux-2-28-cp38-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-manylinux_2_28_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.8'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp38-arm64
+    commit: b2f6204bdbef15e3528f3d274bee88dcbb676cd2
+  wheel-manylinux-2-28-cp38-amd64: !Task
+    name: wheel-manylinux-2-28-cp38-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-manylinux_2_28_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.8'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp38-amd64
+    commit: 93d3826ead3bd5bea77ebf1eabdcba89f08b9f0c
+  wheel-manylinux-2014-cp312-arm64: !Task
+    name: wheel-manylinux-2014-cp312-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.12'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_aarch64.manylinux2014_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp312-arm64
+    commit: c054e8a6fe537d754fe0d18c3eada64ad5aa83ea
+  test-conda-python-3.9: !Task
+    name: test-conda-python-3.9
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.9'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-661760e6ba-github-test-conda-python-3.9
+    commit: 0b58aae725af01233a2bea0f39c9fabedac8cd49
+  test-conda-python-3.12: !Task
+    name: test-conda-python-3.12
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.12'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+
+    branch: actions-661760e6ba-github-test-conda-python-3.12
+    commit: 91e8ea565ad699e51d08c1325634711a9467e8cc
+  test-conda-python-3.11-dask-latest: !Task
+    name: test-conda-python-3.11-dask-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: latest
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+    branch: actions-661760e6ba-github-test-conda-python-3.11-dask-latest
+    commit: 0501a179c575486907af77af71218676ceef6e93
+  test-conda-python-3.11-dask-upstream_devel: !Task
+    name: test-conda-python-3.11-dask-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: upstream_devel
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+
+    branch: actions-661760e6ba-github-test-conda-python-3.11-dask-upstream_devel
+    commit: c346f44c854316358e348c75ec4e20a3f5bb56dd
+  wheel-macos-catalina-cp312-amd64: !Task
+    name: wheel-macos-catalina-cp312-amd64
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-macosx_10_15_x86_64.whl
+    params:
+      python_version: '3.12'
+      macos_deployment_target: '10.15'
+    branch: actions-661760e6ba-github-wheel-macos-catalina-cp312-amd64
+    commit: e22623cbc34c763917829351f87ab8aecc03a33c
+  wheel-macos-catalina-cp310-amd64: !Task
+    name: wheel-macos-catalina-cp310-amd64
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-macosx_10_15_x86_64.whl
+    params:
+      python_version: '3.10'
+      macos_deployment_target: '10.15'
+    branch: actions-661760e6ba-github-wheel-macos-catalina-cp310-amd64
+    commit: 4e12bc6fec2ec8441f5903a0c3531992f80cee14
+  test-conda-python-3.8: !Task
+    name: test-conda-python-3.8
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-661760e6ba-github-test-conda-python-3.8
+    commit: 3c0560bcb7c675252351cfb53f2a0a8a824ed241
+  wheel-manylinux-2014-cp310-arm64: !Task
+    name: wheel-manylinux-2014-cp310-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.10'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_aarch64.manylinux2014_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp310-arm64
+    commit: 9c85efe54c77a946d5a6d765872912c851ffcf0c
+  wheel-manylinux-2014-cp39-amd64: !Task
+    name: wheel-manylinux-2014-cp39-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.9'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_x86_64.manylinux2014_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp39-amd64
+    commit: 93d1cac72e85afe649374bfb3fd67809c11a079a
+  test-debian-11-python-3: !Task
+    name: test-debian-11-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        DEBIAN: 11
+      image: debian-python
+
+    branch: actions-661760e6ba-azure-test-debian-11-python-3
+    commit: e757d4c09e55ef5186fab606963b1de31231f0e6
+  test-conda-python-3.10-hdfs-2.9.2: !Task
+    name: test-conda-python-3.10-hdfs-2.9.2
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        HDFS: 2.9.2
+      image: conda-python-hdfs
+    branch: actions-661760e6ba-github-test-conda-python-3.10-hdfs-2.9.2
+    commit: 19082ca0af4af5c5b70bfb5126bb6d87ce2e872f
+  wheel-manylinux-2014-cp38-amd64: !Task
+    name: wheel-manylinux-2014-cp38-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.8'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_x86_64.manylinux2014_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp38-amd64
+    commit: 5b93bd631c6ddd08657fba89b161107ddd1b6274
+  wheel-manylinux-2014-cp312-amd64: !Task
+    name: wheel-manylinux-2014-cp312-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.12'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_x86_64.manylinux2014_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp312-amd64
+    commit: 56283261d0f180ce17a10d501fa9346ede4b6285
+  test-conda-python-3.8-pandas-1.0: !Task
+    name: test-conda-python-3.8-pandas-1.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        PANDAS: '1.0'
+        NUMPY: '1.19'
+      image: conda-python-pandas
+    branch: actions-661760e6ba-github-test-conda-python-3.8-pandas-1.0
+    commit: 1d89866b38d0c7c17b12e976c25ed4792f6ba485
+  test-conda-python-3.10-substrait: !Task
+    name: test-conda-python-3.10-substrait
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+      image: conda-python-substrait
+
+    branch: actions-661760e6ba-github-test-conda-python-3.10-substrait
+    commit: 9f14bee11691aad6696f514b799080b1a6ad58c4
+  test-conda-python-3.10-cython2: !Task
+    name: test-conda-python-3.10-cython2
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+      image: conda-python-cython2
+
+    branch: actions-661760e6ba-github-test-conda-python-3.10-cython2
+    commit: fe0b02785ca0a01339e52513a0686dded302e916
+  test-conda-python-3.10-hdfs-3.2.1: !Task
+    name: test-conda-python-3.10-hdfs-3.2.1
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        HDFS: 3.2.1
+      image: conda-python-hdfs
+
+    branch: actions-661760e6ba-github-test-conda-python-3.10-hdfs-3.2.1
+    commit: d88841389d50b68841ce44346e9063c0af784bc1
+  wheel-manylinux-2014-cp311-arm64: !Task
+    name: wheel-manylinux-2014-cp311-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.11'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_aarch64.manylinux2014_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp311-arm64
+    commit: 02db8061f94907d5e9d7af5df24d22c6e43c5a46
+  test-conda-python-3.11-spark-master: !Task
+    name: test-conda-python-3.11-spark-master
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        SPARK: master
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: latest
+        JDK: '17'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+
+    branch: actions-661760e6ba-github-test-conda-python-3.11-spark-master
+    commit: d47a4a404faf5c0175391ce87aa7de81b417a781
+  test-ubuntu-22.04-python-3: !Task
+    name: test-ubuntu-22.04-python-3
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: ubuntu-python
+
+    branch: actions-661760e6ba-github-test-ubuntu-22.04-python-3
+    commit: e8dda3909d81f89f5f4ec916de21a34050e19340
+  test-conda-python-3.8-spark-v3.5.0: !Task
+    name: test-conda-python-3.8-spark-v3.5.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        SPARK: v3.5.0
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: latest
+        JDK: '8'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+    branch: actions-661760e6ba-github-test-conda-python-3.8-spark-v3.5.0
+    commit: bddd4e58f600d3a4e7445697f58e67f1ac6ff8d1
+  wheel-manylinux-2-28-cp312-amd64: !Task
+    name: wheel-manylinux-2-28-cp312-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-manylinux_2_28_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.12'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp312-amd64
+    commit: 46d293fa44ece7baf05333b18788c64a6617ccb2
+  wheel-manylinux-2-28-cp39-arm64: !Task
+    name: wheel-manylinux-2-28-cp39-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-manylinux_2_28_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.9'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp39-arm64
+    commit: a675f66274c3800f0aad8af671e833a605f62de3
+  wheel-manylinux-2-28-cp312-arm64: !Task
+    name: wheel-manylinux-2-28-cp312-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-manylinux_2_28_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.12'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp312-arm64
+    commit: 26033292ef40b3bc93588151763b7517b359fc3a
+  wheel-macos-big-sur-cp311-arm64: !Task
+    name: wheel-macos-big-sur-cp311-arm64
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      python_version: '3.11'
+      macos_deployment_target: '11.0'
+    branch: actions-661760e6ba-github-wheel-macos-big-sur-cp311-arm64
+    commit: d2dc30720f74ae29669b25a0ee1cac9d4095bced
+  test-ubuntu-20.04-python-3: !Task
+    name: test-ubuntu-20.04-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-python
+
+    branch: actions-661760e6ba-azure-test-ubuntu-20.04-python-3
+    commit: 77eb559acb3c4895e68926d65acc64324be3f36f
+  wheel-windows-cp311-amd64: !Task
+    name: wheel-windows-cp311-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-win_amd64.whl
+    params:
+      python_version: '3.11'
+    branch: actions-661760e6ba-github-wheel-windows-cp311-amd64
+    commit: 082ed9c4f3cbc03d6110524c7d1e17b491aac5cd
+  wheel-macos-big-sur-cp310-arm64: !Task
+    name: wheel-macos-big-sur-cp310-arm64
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      python_version: '3.10'
+      macos_deployment_target: '11.0'
+    branch: actions-661760e6ba-github-wheel-macos-big-sur-cp310-arm64
+    commit: 0891c94e7f8f31c79a8dc5c244ee1302692806dc
+  test-cuda-python: !Task
+    name: test-cuda-python
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-python
+
+  ############################## Fuzz tests #################################
+
+    branch: actions-661760e6ba-github-test-cuda-python
+    commit: 180bc299ea64d8e359fec8b3fac6144c9e1c842d
+  wheel-windows-cp38-amd64: !Task
+    name: wheel-windows-cp38-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-win_amd64.whl
+    params:
+      python_version: '3.8'
+    branch: actions-661760e6ba-github-wheel-windows-cp38-amd64
+    commit: 923d77cee702e5d4b75ace02c2e5c398c74a73d0
+  wheel-macos-catalina-cp311-amd64: !Task
+    name: wheel-macos-catalina-cp311-amd64
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-macosx_10_15_x86_64.whl
+    params:
+      python_version: '3.11'
+      macos_deployment_target: '10.15'
+    branch: actions-661760e6ba-github-wheel-macos-catalina-cp311-amd64
+    commit: ed1f1aeea2af4beb4abd2ef9d43bc7452015028c
+  wheel-windows-cp312-amd64: !Task
+    name: wheel-windows-cp312-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-win_amd64.whl
+    params:
+      python_version: '3.12'
+    branch: actions-661760e6ba-github-wheel-windows-cp312-amd64
+    commit: ecd4b23638bd2986eaccfc4168e7ece582f2abc2
+  wheel-manylinux-2-28-cp311-amd64: !Task
+    name: wheel-manylinux-2-28-cp311-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-manylinux_2_28_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.11'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp311-amd64
+    commit: 14b3816d837fe2eb783a80a2987a67e89c616887
+  test-conda-python-3.10: !Task
+    name: test-conda-python-3.10
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-661760e6ba-github-test-conda-python-3.10
+    commit: 3977ec5d5df968dd5753fb8f5f7c0e789aa23143
+  test-conda-python-3.11: !Task
+    name: test-conda-python-3.11
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-661760e6ba-github-test-conda-python-3.11
+    commit: 9bf492aaf405611778eac253fc27c7fbfe7909a6
+  wheel-macos-big-sur-cp38-arm64: !Task
+    name: wheel-macos-big-sur-cp38-arm64
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      arrow_simd_level: DEFAULT
+      python_version: '3.8'
+      macos_deployment_target: '11.0'
+
+    branch: actions-661760e6ba-github-wheel-macos-big-sur-cp38-arm64
+    commit: cbd58a26d5993d2502770b6cf70f277fccf3240a
+  wheel-windows-cp39-amd64: !Task
+    name: wheel-windows-cp39-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-win_amd64.whl
+    params:
+      python_version: '3.9'
+    branch: actions-661760e6ba-github-wheel-windows-cp39-amd64
+    commit: b03601f4e51dc004db144ad1c9a9e8304db90cb3
+  wheel-manylinux-2-28-cp310-amd64: !Task
+    name: wheel-manylinux-2-28-cp310-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-manylinux_2_28_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.10'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp310-amd64
+    commit: c2fc08f5efafc6bbc3d33abdc6eb11e1ad33f67a
+  wheel-manylinux-2-28-cp310-arm64: !Task
+    name: wheel-manylinux-2-28-cp310-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-manylinux_2_28_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.10'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp310-arm64
+    commit: 14b7464193fce4dc0fcf94dd4fea06a337578c4a
+  wheel-macos-catalina-cp39-amd64: !Task
+    name: wheel-macos-catalina-cp39-amd64
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-macosx_10_15_x86_64.whl
+    params:
+      python_version: '3.9'
+      macos_deployment_target: '10.15'
+    branch: actions-661760e6ba-github-wheel-macos-catalina-cp39-amd64
+    commit: 1e6452057cb84f2dab805cf8e3e6a66ffe60bf31
+  wheel-windows-cp310-amd64: !Task
+    name: wheel-windows-cp310-amd64
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp310-cp310-win_amd64.whl
+    params:
+      python_version: '3.10'
+    branch: actions-661760e6ba-github-wheel-windows-cp310-amd64
+    commit: 0f4c714db225200881491001cf9ccb762602fd5f
+  wheel-manylinux-2014-cp311-amd64: !Task
+    name: wheel-manylinux-2014-cp311-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.11'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_x86_64.manylinux2014_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp311-amd64
+    commit: 5d0ee3a8f22e9efe13d292384e877b887d1f7c0b
+  test-conda-python-3.10-spark-v3.5.0: !Task
+    name: test-conda-python-3.10-spark-v3.5.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        SPARK: v3.5.0
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: '1.23'
+        JDK: '8'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+    branch: actions-661760e6ba-github-test-conda-python-3.10-spark-v3.5.0
+    commit: 69a76588fe8646e292e7a3b6a4e8df804b88463e
+  wheel-macos-catalina-cp38-amd64: !Task
+    name: wheel-macos-catalina-cp38-amd64
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-macosx_10_15_x86_64.whl
+    params:
+      python_version: '3.8'
+      macos_deployment_target: '10.15'
+    branch: actions-661760e6ba-github-wheel-macos-catalina-cp38-amd64
+    commit: 61199e31f2f6b11e04211b1149365d4d93b9abc8
+  wheel-manylinux-2-28-cp311-arm64: !Task
+    name: wheel-manylinux-2-28-cp311-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp311-cp311-manylinux_2_28_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.11'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp311-arm64
+    commit: 1e9e89cae112668aa7e5dc4ecef97089c5f6cd7f
+  test-conda-python-3.11-hypothesis: !Task
+    name: test-conda-python-3.11-hypothesis
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        HYPOTHESIS_PROFILE: ci
+        PYARROW_TEST_HYPOTHESIS: ON
+        # limit to execute hypothesis tests only
+        PYTEST_ARGS: -m hypothesis -W error
+      image: conda-python-pandas
+
+    branch: actions-661760e6ba-github-test-conda-python-3.11-hypothesis
+    commit: 0bb28a15c785b5b0697727598a58df9ec2043aec
+  test-conda-python-3.11-pandas-upstream_devel: !Task
+    name: test-conda-python-3.11-pandas-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        PANDAS: upstream_devel
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+
+    branch: actions-661760e6ba-github-test-conda-python-3.11-pandas-upstream_devel
+    commit: 56d97b06be8a857a5b34401d9f00678f089b8e8b
+  test-conda-python-3.9-pandas-latest: !Task
+    name: test-conda-python-3.9-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.9'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-661760e6ba-github-test-conda-python-3.9-pandas-latest
+    commit: 26edbd9a05d9d1fa59fead6b69192680d26ab720
+  wheel-macos-big-sur-cp312-arm64: !Task
+    name: wheel-macos-big-sur-cp312-arm64
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp312-cp312-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      python_version: '3.12'
+      macos_deployment_target: '11.0'
+    branch: actions-661760e6ba-github-wheel-macos-big-sur-cp312-arm64
+    commit: 123c8d634ed4cc5ddac18c611c9cf926a96646a8
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-661760e6ba-github-test-conda-python-3.10-pandas-nightly
+    commit: 2eed50b49832991b27d1405e1c088a4d96870796
+  wheel-manylinux-2014-cp39-arm64: !Task
+    name: wheel-manylinux-2014-cp39-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.9'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_aarch64.manylinux2014_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp39-arm64
+    commit: e6b6b1108b9267b017aa289b5c8df82ddd4ad239
+  wheel-manylinux-2-28-cp39-amd64: !Task
+    name: wheel-manylinux-2-28-cp39-amd64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-manylinux_2_28_x86_64.whl
+    params:
+      arch: amd64
+      python_version: '3.9'
+      manylinux_version: 2-28
+      wheel_platform_tag: manylinux_2_28_x86_64
+    branch: actions-661760e6ba-github-wheel-manylinux-2-28-cp39-amd64
+    commit: ae047682631ddc8c45181fe4bfc9525dc684f403
+  wheel-macos-big-sur-cp39-arm64: !Task
+    name: wheel-macos-big-sur-cp39-arm64
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp39-cp39-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      python_version: '3.9'
+      macos_deployment_target: '11.0'
+    branch: actions-661760e6ba-github-wheel-macos-big-sur-cp39-arm64
+    commit: 02754a0f6162c162344bbb56b40286208a15d55f
+  test-fedora-38-python-3: !Task
+    name: test-fedora-38-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 38
+      image: fedora-python
+
+    branch: actions-661760e6ba-azure-test-fedora-38-python-3
+    commit: d21cd7f0b814371eee0d3e784fff68dcd97b5934
+  wheel-manylinux-2014-cp38-arm64: !Task
+    name: wheel-manylinux-2014-cp38-arm64
+    ci: github
+    template: python-wheels/github.linux.yml
+    artifacts:
+    - pyarrow-15.0.0.dev386-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      arch: arm64
+      python_version: '3.8'
+      manylinux_version: '2014'
+      wheel_platform_tag: manylinux_2_17_aarch64.manylinux2014_aarch64
+    branch: actions-661760e6ba-github-wheel-manylinux-2014-cp38-arm64
+    commit: 636eff9e68531460e8a372a2db0993c7072f3b17
+params:
+  pr_number: 39516
+branch: actions-661760e6ba
