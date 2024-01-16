@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: 3adf04e8ed8f5875e51fd3807a6ac99e084c1877
+  email: unknown
+  branch: gh-36412-pandas-warnings
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 15.0.0.dev440
+  r_version: 14.0.2.100000440
+  no_rc_version: 15.0.0.dev440
+  no_rc_r_version: 14.0.2.100000440
+  no_rc_semver_version: 15.0.0-dev440
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-5666ccb6e4-github-test-conda-python-3.10-pandas-nightly
+    commit: ff7fc8217c9780e60a09b074cc6a54e7f34b001f
+params:
+  pr_number: 39609
+branch: actions-5666ccb6e4
