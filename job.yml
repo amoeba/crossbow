@@ -1,0 +1,54 @@
+!Job
+target: !Target
+  head: fa075945eb05038e3675329287ef9139d74f6de9
+  email: unknown
+  branch: use-j1-328
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 15.0.0.dev437
+  r_version: 14.0.2.100000437
+  no_rc_version: 15.0.0.dev437
+  no_rc_r_version: 14.0.2.100000437
+  no_rc_semver_version: 15.0.0-dev437
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  r-binary-packages: !Task
+    name: r-binary-packages
+    ci: github
+    template: r/github.packages.yml
+    artifacts:
+    - r-lib__libarrow__bin__windows__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.0__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.1__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__linux-openssl-3.0__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-1.1__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-3.0__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-1.1__arrow-14.0.2.100000437\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-3.0__arrow-14.0.2.100000437\.zip
+    - r-pkg__bin__windows__contrib__4.3__arrow_14.0.2.100000437\.zip
+    - r-pkg__bin__windows__contrib__4.2__arrow_14.0.2.100000437\.zip
+    - r-pkg__bin__macosx__big-sur-x86_64__contrib__4.3__arrow_14.0.2.100000437\.tgz
+    - r-pkg__bin__macosx__contrib__4.2__arrow_14.0.2.100000437\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.3__arrow_14.0.2.100000437\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.2__arrow_14.0.2.100000437\.tgz
+    - r-pkg__src__contrib__arrow_14.0.2.100000437\.tar\.gz
+    params:
+      custom_version: Unset
+    branch: actions-1dcd458160-github-r-binary-packages
+    commit: db4ea26196e8e187962b73dbfdd1fd74486af5d8
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: actions-1dcd458160-azure-test-r-depsource-bundled
+    commit: c828e02ed8d110a069b683fd6887c0da38ac15ac
+params:
+  pr_number: 39629
+branch: actions-1dcd458160
