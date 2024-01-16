@@ -1,0 +1,90 @@
+!Job
+target: !Target
+  head: 9c1cb9313cca2003d4cac98c4ee66c17bab9215e
+  email: unknown
+  branch: dom/resizable
+  remote: https://github.com/domoritz/arrow.git
+  github_repo: domoritz/arrow
+  version: 15.0.0.dev426
+  r_version: 14.0.2.100000426
+  no_rc_version: 15.0.0.dev426
+  no_rc_r_version: 14.0.2.100000426
+  no_rc_semver_version: 15.0.0-dev426
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  verify-rc-source-js-linux-almalinux-8-amd64: !Task
+    name: verify-rc-source-js-linux-almalinux-8-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        ALMALINUX: '8'
+      target: js
+      distro: almalinux
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-linux-almalinux-8-amd64
+    commit: 7d39b21425ac50ed537a8fceb5cde1e8c6479b9b
+  verify-rc-source-js-linux-conda-latest-amd64: !Task
+    name: verify-rc-source-js-linux-conda-latest-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        CONDA: latest
+      target: js
+      distro: conda
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-linux-conda-latest-amd64
+    commit: 03840d937337f0893fc38e3f3e8387e60357551d
+  verify-rc-source-js-macos-amd64: !Task
+    name: verify-rc-source-js-macos-amd64
+    ci: github
+    template: verify-rc/github.macos.amd64.yml
+    artifacts: []
+    params:
+      target: js
+      github_runner: macos-latest
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-macos-amd64
+    commit: 0e5f22ac57b6c34fd63ff088015e785de2ffe635
+  verify-rc-source-js-linux-ubuntu-20.04-amd64: !Task
+    name: verify-rc-source-js-linux-ubuntu-20.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: js
+      distro: ubuntu
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-linux-ubuntu-20.04-amd64
+    commit: def1bd3be5796ae88f2e61eb74e903c9d9443035
+  verify-rc-source-js-linux-ubuntu-22.04-amd64: !Task
+    name: verify-rc-source-js-linux-ubuntu-22.04-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '22.04'
+      target: js
+      distro: ubuntu
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-linux-ubuntu-22.04-amd64
+    commit: 532458b8a78158571c704fe294ffc04e2572d098
+  verify-rc-source-js-macos-arm64: !Task
+    name: verify-rc-source-js-macos-arm64
+    ci: github
+    template: verify-rc/github.macos.arm64.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_FLIGHT: 0
+        ARROW_GANDIVA: 0
+        TEST_INTEGRATION_JAVA: 0
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      target: js
+      github_runner: [self-hosted, macOS, arm64]
+    branch: actions-8a8bb1938f-github-verify-rc-source-js-macos-arm64
+    commit: a92693b64d3bf982fdadb4a5ab2926fcbd88e29d
+params:
+  pr_number: 39607
+branch: actions-8a8bb1938f
