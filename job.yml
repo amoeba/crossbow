@@ -1,0 +1,29 @@
+!Job
+target: !Target
+  head: 4a239b6d18bc061e01d0e18a9583d686c6112675
+  email: jacob@wujciak.de
+  branch: maint-14.0.2-cran
+  remote: https://github.com/apache/arrow
+  github_repo: apache/arrow
+  version: 15.0.1.dev52
+  r_version: 14.0.2
+  no_rc_version: 15.0.1.dev52
+  no_rc_r_version: 14.0.2
+  no_rc_semver_version: 15.0.1-dev52
+  no_rc_snapshot_version: 15.0.1-SNAPSHOT
+tasks:
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: cran14-4-azure-test-r-depsource-bundled
+    commit: 99e264988fa154c1919d41211e8e0b5e0c22bb82
+params: {}
+branch: cran14-4
