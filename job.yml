@@ -1,0 +1,53 @@
+!Job
+target: !Target
+  head: de133eaba0402b5fc68f0e70de2438e91ad0db7a
+  email: jacob@wujciak.de
+  branch: maint-14.0.2-cran
+  remote: https://github.com/apache/arrow
+  github_repo: apache/arrow
+  version: 15.0.1.dev50
+  r_version: 14.0.2
+  no_rc_version: 15.0.1.dev50
+  no_rc_r_version: 14.0.2
+  no_rc_semver_version: 15.0.1-dev50
+  no_rc_snapshot_version: 15.0.1-SNAPSHOT
+tasks:
+  test-r-offline-minimal: !Task
+    name: test-r-offline-minimal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e TEST_OFFLINE_BUILD=true
+
+    branch: cran14-3-azure-test-r-offline-minimal
+    commit: 2fa29977c6f574160536e6e9ca8f52a8bb487a79
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: cran14-3-azure-test-r-depsource-bundled
+    commit: f0f03f461993c6d8175f630e18163807d21822b8
+  test-r-library-r-base-latest: !Task
+    name: test-r-library-r-base-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+    branch: cran14-3-azure-test-r-library-r-base-latest
+    commit: 6caa11a33f8088ada5240523d6e54346846b6f03
+params: {}
+branch: cran14-3
