@@ -1,0 +1,54 @@
+!Job
+target: !Target
+  head: cfa6e812d87fefcea992bc9a50092d68684a8ca0
+  email: unknown
+  branch: use-j1-328
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 15.0.0.dev434
+  r_version: 14.0.2.100000434
+  no_rc_version: 15.0.0.dev434
+  no_rc_r_version: 14.0.2.100000434
+  no_rc_semver_version: 15.0.0-dev434
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: actions-eb3db72c97-azure-test-r-depsource-bundled
+    commit: 166b20e2f0fc326b2df97238fe54c2181f551b4c
+  r-binary-packages: !Task
+    name: r-binary-packages
+    ci: github
+    template: r/github.packages.yml
+    artifacts:
+    - r-lib__libarrow__bin__windows__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.0__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.1__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__linux-openssl-3.0__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-1.1__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-3.0__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-1.1__arrow-14.0.2.100000434\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-3.0__arrow-14.0.2.100000434\.zip
+    - r-pkg__bin__windows__contrib__4.3__arrow_14.0.2.100000434\.zip
+    - r-pkg__bin__windows__contrib__4.2__arrow_14.0.2.100000434\.zip
+    - r-pkg__bin__macosx__big-sur-x86_64__contrib__4.3__arrow_14.0.2.100000434\.tgz
+    - r-pkg__bin__macosx__contrib__4.2__arrow_14.0.2.100000434\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.3__arrow_14.0.2.100000434\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.2__arrow_14.0.2.100000434\.tgz
+    - r-pkg__src__contrib__arrow_14.0.2.100000434\.tar\.gz
+    params:
+      custom_version: Unset
+    branch: actions-eb3db72c97-github-r-binary-packages
+    commit: 5148c35546a558cf7825ab707a04e030a5c5b608
+params:
+  pr_number: 39629
+branch: actions-eb3db72c97
