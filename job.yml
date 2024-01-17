@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: b527f930b50c8a6ad0738649bdc17771166d5303
+  email: unknown
+  branch: test-unpin-pydata-sphinx-theme
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 15.0.0.dev444
+  r_version: 14.0.2.100000444
+  no_rc_version: 15.0.0.dev444
+  no_rc_r_version: 14.0.2.100000444
+  no_rc_semver_version: 15.0.0-dev444
+  no_rc_snapshot_version: 15.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-eb2aae2329-github-preview-docs
+    commit: 58a6f2cf4562cac399e1e9003c6d48adb10c823b
+params:
+  pr_number: 39658
+branch: actions-eb2aae2329
