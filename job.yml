@@ -1,0 +1,50 @@
+!Job
+target: !Target
+  head: 9607ba621b68041f80bb3eb17c72b4c8900e3105
+  email: unknown
+  branch: conan
+  remote: https://github.com/wgtmac/arrow.git
+  github_repo: wgtmac/arrow
+  version: 16.0.0.dev6
+  r_version: 15.0.0.100000006
+  no_rc_version: 16.0.0.dev6
+  no_rc_r_version: 15.0.0.100000006
+  no_rc_semver_version: 16.0.0-dev6
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  conan-maximum: !Task
+    name: conan-maximum
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      flags: >-
+        -e ARROW_CONAN_PARQUET=True
+        -e ARROW_CONAN_WITH_BROTLI=True
+        -e ARROW_CONAN_WITH_BZ2=True
+        -e ARROW_CONAN_WITH_FLIGHT_RPC=True
+        -e ARROW_CONAN_WITH_GLOG=True
+        -e ARROW_CONAN_WITH_JEMALLOC=True
+        -e ARROW_CONAN_WITH_JSON=True
+        -e ARROW_CONAN_WITH_LZ4=True
+        -e ARROW_CONAN_WITH_SNAPPY=True
+        -e ARROW_CONAN_WITH_ZSTD=True
+      image: conan
+
+  ########################### Python Minimal ############################
+
+    branch: actions-a79f3e5f19-github-conan-maximum
+    commit: 7d410e75facb44ae4df909f8ba471339454aed87
+  conan-minimum: !Task
+    name: conan-minimum
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      image: conan
+
+    branch: actions-a79f3e5f19-github-conan-minimum
+    commit: ec85ffe263e627b1ff2c8e7e6b2c3d24d8163fd0
+params:
+  pr_number: 39729
+branch: actions-a79f3e5f19
