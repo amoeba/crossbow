@@ -1,0 +1,46 @@
+!Job
+target: !Target
+  head: f11ffd24e87c8d45c92a74ff7f8ad0efba43fffe
+  email: unknown
+  branch: ci-pin-moto
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 16.0.0.dev42
+  r_version: 15.0.0.100000042
+  no_rc_version: 16.0.0.dev42
+  no_rc_r_version: 15.0.0.100000042
+  no_rc_semver_version: 16.0.0-dev42
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.11-dask-latest: !Task
+    name: test-conda-python-3.11-dask-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: latest
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+    branch: actions-925437bf47-github-test-conda-python-3.11-dask-latest
+    commit: adfbb70e9b088447389b9bc2b95ec4f390345433
+  test-conda-python-3.11-dask-upstream_devel: !Task
+    name: test-conda-python-3.11-dask-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: upstream_devel
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+
+    branch: actions-925437bf47-github-test-conda-python-3.11-dask-upstream_devel
+    commit: fdca6e45e30f0463023178684ac4877f31c657da
+params:
+  pr_number: 39881
+branch: actions-925437bf47
