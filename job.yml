@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 7b89d31061ffdff4772408499f53a23d14ce534d
+  email: unknown
+  branch: doc
+  remote: https://github.com/wForget/arrow.git
+  github_repo: wForget/arrow
+  version: 16.0.0.dev63
+  r_version: 15.0.0.100000063
+  no_rc_version: 16.0.0.dev63
+  no_rc_r_version: 15.0.0.100000063
+  no_rc_semver_version: 16.0.0-dev63
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-99396373bc-github-preview-docs
+    commit: 647d76ad589d08cf9bc64b2f5b8570db9ae7edec
+params:
+  pr_number: 39939
+branch: actions-99396373bc
