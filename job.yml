@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: fb71c26ced2bec3e3a12c509e7579c17df82ae78
+  email: unknown
+  branch: '39999'
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 16.0.0.dev89
+  r_version: 15.0.0.100000089
+  no_rc_version: 16.0.0.dev89
+  no_rc_r_version: 15.0.0.100000089
+  no_rc_semver_version: 16.0.0-dev89
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-cacedd35c7-github-test-conda-python-3.10-pandas-nightly
+    commit: 5983f2b4f386aa7bf45c21f8f2a59e721c60a6fa
+params:
+  pr_number: 40000
+branch: actions-cacedd35c7
