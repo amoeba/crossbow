@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 3c7aa44a2dada2fdd7c0ac6996d32acc54ec1c1f
+  email: unknown
+  branch: fix-basic-arrow-docs
+  remote: https://github.com/amoeba/arrow.git
+  github_repo: amoeba/arrow
+  version: 16.0.0.dev93
+  r_version: 15.0.0.100000093
+  no_rc_version: 16.0.0.dev93
+  no_rc_r_version: 15.0.0.100000093
+  no_rc_semver_version: 16.0.0-dev93
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-d426402f0d-github-preview-docs
+    commit: 76a947926bd5d4fca287fe7b46e21b4756701a25
+params:
+  pr_number: 39989
+branch: actions-d426402f0d
