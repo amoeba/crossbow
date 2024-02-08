@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: f3d5bc940cafbc4c86b6205f90cff31361183892
+  email: unknown
+  branch: ci-java-docs-maven
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 16.0.0.dev94
+  r_version: 15.0.0.100000094
+  no_rc_version: 16.0.0.dev94
+  no_rc_r_version: 15.0.0.100000094
+  no_rc_semver_version: 16.0.0-dev94
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-299db5be39-github-preview-docs
+    commit: 00f071678db0783480e4b70576d2581f2de0a0fd
+params:
+  pr_number: 39993
+branch: actions-299db5be39
