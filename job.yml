@@ -1,0 +1,63 @@
+!Job
+target: !Target
+  head: bd5564b4b032864970f9a01ac9437275ee9abe83
+  email: unknown
+  branch: ci-fedora-39
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 16.0.0.dev106
+  r_version: 15.0.0.100000106
+  no_rc_version: 16.0.0.dev106
+  no_rc_r_version: 15.0.0.100000106
+  no_rc_semver_version: 16.0.0-dev106
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-fedora-39-cpp: !Task
+    name: test-fedora-39-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 39
+      image: fedora-cpp
+
+    branch: actions-917d4aa4e0-github-test-fedora-39-cpp
+    commit: 8c193e2c239b779ba164e1144f95d8342ac95da5
+  test-fedora-39-python-3: !Task
+    name: test-fedora-39-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 39
+      image: fedora-python
+
+    branch: actions-917d4aa4e0-azure-test-fedora-39-python-3
+    commit: 92abc0d8e1ff33382fdd55b3be31fde52e34f155
+  example-python-minimal-build-fedora-conda: !Task
+    name: example-python-minimal-build-fedora-conda
+    ci: github
+    template: python-minimal-build/github.linux.yml
+    artifacts: []
+    params:
+      type: minimal_build
+      image: minimal-fedora-conda
+    branch: actions-917d4aa4e0-github-example-python-minimal-build-fedora-conda
+    commit: d9d231cdd83c28d566d6d5305d17072c8dacaef9
+  test-fedora-r-clang-sanitizer: !Task
+    name: test-fedora-r-clang-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-917d4aa4e0-azure-test-fedora-r-clang-sanitizer
+    commit: ffa578681da2d066273ec535ad7a737d0aff7fdf
+params:
+  pr_number: 40012
+branch: actions-917d4aa4e0
