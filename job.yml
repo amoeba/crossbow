@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: e52140b4c74faa6527f0fde248a9fad9b829d661
+  email: unknown
+  branch: GH-31735
+  remote: https://github.com/raulcd/arrow.git
+  github_repo: raulcd/arrow
+  version: 16.0.0.dev135
+  r_version: 15.0.0.100000135
+  no_rc_version: 16.0.0.dev135
+  no_rc_r_version: 15.0.0.100000135
+  no_rc_semver_version: 16.0.0-dev135
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-99361aa29b-github-preview-docs
+    commit: 404d9930be80bce6428bfb21fcbc01d06018de73
+params:
+  pr_number: 39960
+branch: actions-99361aa29b
