@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 4ce0e2849f72cc5883ab55e15864f1a30336f50e
+  email: unknown
+  branch: Update-pydata-sphinx-theme-to-0.15.x
+  remote: https://github.com/Divyansh200102/arrow.git
+  github_repo: Divyansh200102/arrow
+  version: 16.0.0.dev50
+  r_version: 15.0.0.100000050
+  no_rc_version: 16.0.0.dev50
+  no_rc_r_version: 15.0.0.100000050
+  no_rc_semver_version: 16.0.0-dev50
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-ebb7351d9f-github-preview-docs
+    commit: 84f10a8aa1129e02bd0bbdf096d6fac28e26fcf4
+params:
+  pr_number: 39879
+branch: actions-ebb7351d9f
