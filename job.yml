@@ -1,0 +1,43 @@
+!Job
+target: !Target
+  head: 52f870a9957a45f831c0389252202b8a56f6ae10
+  email: unknown
+  branch: gh40159-python-i386-build
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 16.0.0.dev151
+  r_version: 15.0.0.100000151
+  no_rc_version: 16.0.0.dev151
+  no_rc_r_version: 15.0.0.100000151
+  no_rc_semver_version: 16.0.0-dev151
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-debian-11-python-3-i386: !Task
+    name: test-debian-11-python-3-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: 11
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-python
+
+    branch: actions-e14824ebb3-github-test-debian-11-python-3-i386
+    commit: e2ec107d2abbeae117e745791e52c40455347c46
+  test-debian-11-python-3-amd64: !Task
+    name: test-debian-11-python-3-amd64
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        DEBIAN: 11
+      image: debian-python
+
+    branch: actions-e14824ebb3-azure-test-debian-11-python-3-amd64
+    commit: e08dd929742e1620654d79b4955f760925afcae7
+params:
+  pr_number: 40164
+branch: actions-e14824ebb3
