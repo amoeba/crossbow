@@ -1,0 +1,45 @@
+!Job
+target: !Target
+  head: 727fbd1b0844fb3bed64dd8ef6509bec4e49f4c7
+  email: unknown
+  branch: minor-parenthesis
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 16.0.0.dev166
+  r_version: 15.0.0.100000166
+  no_rc_version: 16.0.0.dev166
+  no_rc_r_version: 15.0.0.100000166
+  no_rc_semver_version: 16.0.0-dev166
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-debian-11-cpp-i386: !Task
+    name: test-debian-11-cpp-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: '11'
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-cpp
+
+    branch: actions-9188e3dc1c-github-test-debian-11-cpp-i386
+    commit: a2224f4954f2f84b26866d6d337124bc01a73798
+  test-debian-11-python-3-i386: !Task
+    name: test-debian-11-python-3-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: 11
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-python
+
+    branch: actions-9188e3dc1c-github-test-debian-11-python-3-i386
+    commit: 717424285d0876e3f415af0ec04cff8596632b54
+params:
+  pr_number: 40201
+branch: actions-9188e3dc1c
