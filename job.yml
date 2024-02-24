@@ -1,0 +1,2500 @@
+!Job
+target: !Target
+  head: 960dbbaf6f37ec38c3ff110bf3bddfae432a3da9
+  email: unknown
+  branch: cpp-cmake-config-h
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 16.0.0.dev174
+  r_version: 15.0.0.100000174
+  no_rc_version: 16.0.0.dev174
+  no_rc_r_version: 15.0.0.100000174
+  no_rc_semver_version: 16.0.0-dev174
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    name: test-ubuntu-20.04-cpp-thread-sanitizer
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: a1265e97c8f92f911b4e213c7e00971d20a38b97
+  centos-9-stream-amd64: !Task
+    name: centos-9-stream-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: centos-9-stream
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-centos-9-stream-amd64
+    commit: df045de7d277e7fda19f27e7ca5006bf6feacb0a
+  ubuntu-jammy-amd64: !Task
+    name: ubuntu-jammy-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: ubuntu-jammy
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-jammy-amd64
+    commit: 2d428d437a68b4518b7ee047f4722fafab56621b
+  test-r-depsource-system: !Task
+    name: test-r-depsource-system
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      flags: -e ARROW_DEPENDENCY_SOURCE=SYSTEM -e ARROW_GCS=OFF -e xsimd_SOURCE=BUNDLED
+      image: ubuntu-r-only-r
+
+    branch: actions-5a2aea19a8-github-test-r-depsource-system
+    commit: 5909f3f02f20c461f74706bdf6ff2e363f8d6909
+  test-r-linux-as-cran: !Task
+    name: test-r-linux-as-cran
+    ci: github
+    template: r/github.linux.cran.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_image }}
+
+    branch: actions-5a2aea19a8-github-test-r-linux-as-cran
+    commit: 0c9d6d05ab16e08c8b2391c5d3fd50df7a2ae69d
+  test-conda-cpp: !Task
+    name: test-conda-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: conda-cpp
+    branch: actions-5a2aea19a8-github-test-conda-cpp
+    commit: 8dee4177fa4f95ffea66e1ed1687fd11e4c95fd6
+  test-conda-python-3.8-spark-v3.5.0: !Task
+    name: test-conda-python-3.8-spark-v3.5.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        SPARK: v3.5.0
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: latest
+        JDK: '8'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+    branch: actions-5a2aea19a8-github-test-conda-python-3.8-spark-v3.5.0
+    commit: 9ea20052e7b61d641b502ebb619ab99c9f1d8034
+  test-build-cpp-fuzz: !Task
+    name: test-build-cpp-fuzz
+    ci: github
+    template: fuzz-tests/github.oss-fuzz.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-build-cpp-fuzz
+    commit: c944a7627c395afd6f20b4abc9a83bb1f67f8728
+  test-conda-python-3.11-dask-upstream_devel: !Task
+    name: test-conda-python-3.11-dask-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: upstream_devel
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11-dask-upstream_devel
+    commit: 53947bf4d64cb643f1fcd986a3a2fadb9b4ab0f7
+  amazon-linux-2023-arm64: !Task
+    name: amazon-linux-2023-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: arm64
+      target: amazon-linux-2023-aarch64
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-amazon-linux-2023-arm64
+    commit: 95bacc2dcdc4830fe88bc0d446b1cd6e8629ad44
+  test-debian-11-cpp-i386: !Task
+    name: test-debian-11-cpp-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: '11'
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-cpp
+
+    branch: actions-5a2aea19a8-github-test-debian-11-cpp-i386
+    commit: 7dc51711438724ccbb026e44ae9d37552bab2eca
+  ubuntu-noble-arm64: !Task
+    name: ubuntu-noble-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: ubuntu-noble-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-noble-arm64
+    commit: 9067d57bbb30af66fa2817ad54d4300850a79ae6
+  debian-bookworm-amd64: !Task
+    name: debian-bookworm-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: debian-bookworm
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-bookworm-amd64
+    commit: d27b7cbb639e3515cd5ffffeb0c6ed277058b8f7
+  amazon-linux-2023-amd64: !Task
+    name: amazon-linux-2023-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: amazon-linux-2023
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-amazon-linux-2023-amd64
+    commit: 0d2adc2d94ac6f86fd46c0d33ae87d816ce9f4b0
+  almalinux-9-amd64: !Task
+    name: almalinux-9-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: almalinux-9
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-almalinux-9-amd64
+    commit: 4d43fbc2cfd83ff968c7326504c860fe7dcc6edc
+  test-cuda-python: !Task
+    name: test-cuda-python
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-python
+
+  ############################## Fuzz tests #################################
+
+    branch: actions-5a2aea19a8-github-test-cuda-python
+    commit: f9aa5710ede66b9a8bd2ef441828c99f008eb77a
+  test-r-dev-duckdb: !Task
+    name: test-r-dev-duckdb
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_DUCKDB_DEV: true
+      image: ubuntu-r-only-r
+
+    branch: actions-5a2aea19a8-github-test-r-dev-duckdb
+    commit: d4db2c54320feac0f4693552016f2b96c0ff48ae
+  test-conda-python-3.10-hdfs-2.9.2: !Task
+    name: test-conda-python-3.10-hdfs-2.9.2
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        HDFS: 2.9.2
+      image: conda-python-hdfs
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-hdfs-2.9.2
+    commit: 3a666301a2e9a758e13cc9015cc84429c2b28337
+  debian-bookworm-arm64: !Task
+    name: debian-bookworm-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: debian-bookworm-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-bookworm-arm64
+    commit: 49b5aeba7dfc3cf5d4dac24914051328df1d08cd
+  ubuntu-noble-amd64: !Task
+    name: ubuntu-noble-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: ubuntu-noble
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-noble-amd64
+    commit: ef7a3d7812b4afdfb463bd46f589a1b5468031a7
+  test-conda-python-3.11-spark-master: !Task
+    name: test-conda-python-3.11-spark-master
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        SPARK: master
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: latest
+        JDK: '17'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11-spark-master
+    commit: a97acb4e16b8d61a17315be3ab79d74744650ddc
+  test-ubuntu-22.04-cpp-no-threading: !Task
+    name: test-ubuntu-22.04-cpp-no-threading
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e ARROW_ENABLE_THREADING=OFF
+      image: ubuntu-cpp
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-22.04-cpp-no-threading
+    commit: 29a51a91aa901697af7f3741cc3f37a6749ac667
+  debian-bullseye-arm64: !Task
+    name: debian-bullseye-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: debian-bullseye-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-bullseye-arm64
+    commit: a28aa3518a2ad40cde2b055ac669e35ed5d8d2fc
+  test-r-gcc-12: !Task
+    name: test-r-gcc-12
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        GCC_VERSION: 12
+      image: ubuntu-r-only-r
+
+    branch: actions-5a2aea19a8-github-test-r-gcc-12
+    commit: 442964af8c6d89476646919bf678dbe53db374f2
+  test-conda-python-3.10-hdfs-3.2.1: !Task
+    name: test-conda-python-3.10-hdfs-3.2.1
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        HDFS: 3.2.1
+      image: conda-python-hdfs
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-hdfs-3.2.1
+    commit: 1e110b4fadbf32b2985a1032dcffe4dd3645c407
+  test-conda-python-3.10-cython2: !Task
+    name: test-conda-python-3.10-cython2
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+      image: conda-python-cython2
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-cython2
+    commit: 805f2f2958da451704daeb2536cb62e8cfdb9a07
+  test-r-offline-maximal: !Task
+    name: test-r-offline-maximal
+    ci: github
+    template: r/github.linux.offline.build.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-r-offline-maximal
+    commit: 556b7a6fcf75d6e70891eb1d3179b59a6859f0d8
+  test-conda-python-3.9: !Task
+    name: test-conda-python-3.9
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.9'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-5a2aea19a8-github-test-conda-python-3.9
+    commit: e3d056cb9c569807a1d8a2278773a7b0228d682e
+  test-conda-cpp-valgrind: !Task
+    name: test-conda-cpp-valgrind
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-5a2aea19a8-azure-test-conda-cpp-valgrind
+    commit: 3c1e9432a94818b8241e59bba86731c437bc62d2
+  test-r-rstudio-r-base-4.2-focal: !Task
+    name: test-r-rstudio-r-base-4.2-focal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.2-focal
+    branch: actions-5a2aea19a8-azure-test-r-rstudio-r-base-4.2-focal
+    commit: 9c3175232e175f6bc95937c7564621f1d61f1b46
+  test-conda-python-3.10: !Task
+    name: test-conda-python-3.10
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10
+    commit: 707c4812cc9bdfac8a260d15103393a6ec0172fc
+  test-r-library-r-base-latest: !Task
+    name: test-r-library-r-base-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+    branch: actions-5a2aea19a8-azure-test-r-library-r-base-latest
+    commit: 8a83328d83d70f7850d25935a097e10f327732cc
+  test-r-gcc-11: !Task
+    name: test-r-gcc-11
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        GCC_VERSION: 11
+      image: ubuntu-r-only-r
+
+  # This also has -flto=auto
+    branch: actions-5a2aea19a8-github-test-r-gcc-11
+    commit: 4d85cbce6eeb7c732a9371a18e31f932033cb9a0
+  test-ubuntu-20.04-python-3: !Task
+    name: test-ubuntu-20.04-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-python
+
+    branch: actions-5a2aea19a8-azure-test-ubuntu-20.04-python-3
+    commit: 23b20980c03842d440c7cb4fda7583b66adaef8b
+  test-ubuntu-22.04-cpp-20: !Task
+    name: test-ubuntu-22.04-cpp-20
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      flags: -e CMAKE_CXX_STANDARD=20
+      image: ubuntu-cpp
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-22.04-cpp-20
+    commit: ae80e5451af333a6a62ab9cd2ae5454645ff5b01
+  test-r-versions: !Task
+    name: test-r-versions
+    ci: github
+    template: r/github.linux.versions.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_version }}
+
+    branch: actions-5a2aea19a8-github-test-r-versions
+    commit: a7ee13ba7f47465f5bfab14d2cd37d8d9eea695c
+  test-ubuntu-22.04-cpp: !Task
+    name: test-ubuntu-22.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '22.04'
+      image: ubuntu-cpp
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-22.04-cpp
+    commit: c91fde4018d465c3326389a0576b44d43d33732a
+  test-conda-python-3.10-substrait: !Task
+    name: test-conda-python-3.10-substrait
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+      image: conda-python-substrait
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-substrait
+    commit: 3a40d3149d53692036f73f5859cb301b7cf47a37
+  test-r-arrow-backwards-compatibility: !Task
+    name: test-r-arrow-backwards-compatibility
+    ci: github
+    template: r/github.linux.arrow.version.back.compat.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-r-arrow-backwards-compatibility
+    commit: 6446c9eeabb2468d6a15f42b1d0efbea9b035cb7
+  test-r-rhub-ubuntu-gcc-release-latest: !Task
+    name: test-r-rhub-ubuntu-gcc-release-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: ubuntu-gcc-release
+      r_tag: latest
+    branch: actions-5a2aea19a8-azure-test-r-rhub-ubuntu-gcc-release-latest
+    commit: 7337071c810e4c85028127fd866532a469d289a9
+  debian-trixie-amd64: !Task
+    name: debian-trixie-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: debian-trixie
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-trixie-amd64
+    commit: 40d7ebb89fa8f6f694005fc33b29c5b1ac9980fb
+  test-conda-python-3.11: !Task
+    name: test-conda-python-3.11
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11
+    commit: 97754f296f62764d9ca256d9d126b24ec4515cb9
+  ubuntu-focal-arm64: !Task
+    name: ubuntu-focal-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: ubuntu-focal-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-focal-arm64
+    commit: 35fa8fb1b22025ee6903fca646428c2db253d1cf
+  test-ubuntu-22.04-python-3: !Task
+    name: test-ubuntu-22.04-python-3
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: ubuntu-python
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-22.04-python-3
+    commit: ab4736dcab2464ee1bac708aeaabe469bb00b31c
+  debian-bullseye-amd64: !Task
+    name: debian-bullseye-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: debian-bullseye
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-bullseye-amd64
+    commit: f0da43c436ffdc5a4700db69ea86d3735ff2dadf
+  test-conda-python-3.10-pandas-nightly: !Task
+    name: test-conda-python-3.10-pandas-nightly
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: nightly
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-pandas-nightly
+    commit: f79fd39c1e502fd89016edcbf10f6b9e6131ad3f
+  test-ubuntu-20.04-cpp-minimal-with-formats: !Task
+    name: test-ubuntu-20.04-cpp-minimal-with-formats
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e ARROW_CSV=ON -e ARROW_PARQUET=ON
+      image: ubuntu-cpp-minimal
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-20.04-cpp-minimal-with-formats
+    commit: 5302ca4b340d31d6d831da921c8d6579714d9d70
+  test-debian-11-cpp-amd64: !Task
+    name: test-debian-11-cpp-amd64
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: amd64
+        DEBIAN: '11'
+      image: debian-cpp
+
+    branch: actions-5a2aea19a8-github-test-debian-11-cpp-amd64
+    commit: 55c29264f369ee6ab884263ed595ea079e4d24af
+  r-binary-packages: !Task
+    name: r-binary-packages
+    ci: github
+    template: r/github.packages.yml
+    artifacts:
+    - r-lib__libarrow__bin__windows__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.0__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__linux-openssl-1.1__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__linux-openssl-3.0__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-1.1__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__darwin-arm64-openssl-3.0__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-1.1__arrow-15.0.0.100000174\.zip
+    - r-lib__libarrow__bin__darwin-x86_64-openssl-3.0__arrow-15.0.0.100000174\.zip
+    - r-pkg__bin__windows__contrib__4.3__arrow_15.0.0.100000174\.zip
+    - r-pkg__bin__windows__contrib__4.2__arrow_15.0.0.100000174\.zip
+    - r-pkg__bin__macosx__big-sur-x86_64__contrib__4.3__arrow_15.0.0.100000174\.tgz
+    - r-pkg__bin__macosx__contrib__4.2__arrow_15.0.0.100000174\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.3__arrow_15.0.0.100000174\.tgz
+    - r-pkg__bin__macosx__big-sur-arm64__contrib__4.2__arrow_15.0.0.100000174\.tgz
+    - r-pkg__src__contrib__arrow_15.0.0.100000174\.tar\.gz
+    params:
+      custom_version: Unset
+    branch: actions-5a2aea19a8-github-r-binary-packages
+    commit: 5f11c877b8a911a8f0bcfe0dceef71642ec34c16
+  test-conda-python-3.10-spark-v3.5.0: !Task
+    name: test-conda-python-3.10-spark-v3.5.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        SPARK: v3.5.0
+        TEST_PYARROW_ONLY: 'false'
+        NUMPY: '1.23'
+        JDK: '8'
+      # use the branch-3.0 of spark, so prevent reusing any layers
+      flags: --no-leaf-cache
+      image: conda-python-spark
+      fetch_depth: 0
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-spark-v3.5.0
+    commit: 5e09f07be3828e76f18ae7471c9516a4056c4a63
+  test-ubuntu-r-sanitizer: !Task
+    name: test-ubuntu-r-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-5a2aea19a8-azure-test-ubuntu-r-sanitizer
+    commit: e842a13a529fdc2e35869be756072ba92c3e2486
+  centos-7-amd64: !Task
+    name: centos-7-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: centos-7
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-centos-7-amd64
+    commit: ed005cfc30a82e004e8db78c412f3a46a99b194f
+  test-conda-python-3.8: !Task
+    name: test-conda-python-3.8
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+    branch: actions-5a2aea19a8-github-test-conda-python-3.8
+    commit: bbc321db775bed5c5d52da3bc625ec7f4b634dc3
+  test-conda-python-3.12: !Task
+    name: test-conda-python-3.12
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.12'
+        # Temporarily disable error on Warning: https://github.com/apache/arrow/issues/38239
+        # PYTEST_ARGS: "-W error -W 'ignore:Setting custom ClientSession:DeprecationWarning'"
+      image: conda-python
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.12
+    commit: 12637ca533e687ab6d37a1e2024d3989367af9cc
+  ubuntu-jammy-arm64: !Task
+    name: ubuntu-jammy-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: ubuntu-jammy-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-jammy-arm64
+    commit: 4aa41a834d6631078854d773512d5c7276fc0c4b
+  test-r-ubuntu-22.04: !Task
+    name: test-r-ubuntu-22.04
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-only-r
+
+  # This also has -flto=auto
+    branch: actions-5a2aea19a8-github-test-r-ubuntu-22.04
+    commit: e3712b1ca2a55a315bfeca68ddde33d105ccf74b
+  centos-8-stream-amd64: !Task
+    name: centos-8-stream-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: centos-8-stream
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-centos-8-stream-amd64
+    commit: d64362b688470ae950f6af81ab354ff77094c242
+  test-r-rstudio-r-base-4.2-centos7-devtoolset-8: !Task
+    name: test-r-rstudio-r-base-4.2-centos7-devtoolset-8
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.2-centos7
+      devtoolset_version: 8
+
+    branch: actions-5a2aea19a8-azure-test-r-rstudio-r-base-4.2-centos7-devtoolset-8
+    commit: 1300e011f88911adae9965553923dbf44cccf09f
+  almalinux-8-arm64: !Task
+    name: almalinux-8-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: arm64
+      target: almalinux-8-aarch64
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-almalinux-8-arm64
+    commit: cf93a65a2c6adcd4f719d21ebb394aab4067b6e2
+  test-conda-python-3.11-pandas-upstream_devel: !Task
+    name: test-conda-python-3.11-pandas-upstream_devel
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.11'
+        PANDAS: upstream_devel
+        NUMPY: nightly
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11-pandas-upstream_devel
+    commit: 7105c88911a8d7e8ed726e28daa7bbd1e54bbf6a
+  centos-9-stream-arm64: !Task
+    name: centos-9-stream-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: arm64
+      target: centos-9-stream-aarch64
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-centos-9-stream-arm64
+    commit: 4de117db3af4663b627bd32a61f962140aa9290d
+  test-debian-11-python-3-amd64: !Task
+    name: test-debian-11-python-3-amd64
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        DEBIAN: 11
+      image: debian-python
+
+    branch: actions-5a2aea19a8-azure-test-debian-11-python-3-amd64
+    commit: 830f34afabe9b0872dec53e0e08d9b57c5dd4fe6
+  test-fedora-39-python-3: !Task
+    name: test-fedora-39-python-3
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 39
+      image: fedora-python
+
+    branch: actions-5a2aea19a8-azure-test-fedora-39-python-3
+    commit: 538575d601cb6c624e30026bbed96f3487bf4497
+  test-conda-python-3.11-dask-latest: !Task
+    name: test-conda-python-3.11-dask-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        DASK: latest
+      # use the latest dask release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-dask
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11-dask-latest
+    commit: 10367a1cfec11db381f1627502c17d40094abd0c
+  test-conda-python-3.10-pandas-latest: !Task
+    name: test-conda-python-3.10-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.10'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-5a2aea19a8-github-test-conda-python-3.10-pandas-latest
+    commit: a3dee3a9eab7fe001909c70aaf5786f9d2425016
+  almalinux-8-amd64: !Task
+    name: almalinux-8-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-16.0.0.dev174-1.[a-z0-9]+.src.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: amd64
+      target: almalinux-8
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-almalinux-8-amd64
+    commit: f37bcd6d1654be9e73afd86068777f123c1b1fcc
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: actions-5a2aea19a8-azure-test-r-depsource-bundled
+    commit: bc0a74bef9caaf4ec7351ef5060ca54fb62f04b4
+  test-r-minimal-build: !Task
+    name: test-r-minimal-build
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e LIBARROW_MINIMAL=TRUE
+
+    branch: actions-5a2aea19a8-azure-test-r-minimal-build
+    commit: 6b089d2a5c6420b644eb2b13cf3741997ba24275
+  test-r-rhub-debian-gcc-devel-lto-latest: !Task
+    name: test-r-rhub-debian-gcc-devel-lto-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-devel-lto
+      r_tag: latest
+      flags: -e NOT_CRAN=false -e INSTALL_ARGS=--use-LTO
+
+  # This one has -flto=auto
+    branch: actions-5a2aea19a8-azure-test-r-rhub-debian-gcc-devel-lto-latest
+    commit: 12e52e1e78f3cb37f498839ddcd6926896cdf4b9
+  test-conda-python-3.9-pandas-latest: !Task
+    name: test-conda-python-3.9-pandas-latest
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.9'
+        PANDAS: latest
+        NUMPY: latest
+        # ensure we have at least one build with parquet encryption disabled
+        PARQUET_REQUIRE_ENCRYPTION: OFF
+      # use the latest pandas release, so prevent reusing any cached layers
+      flags: --no-leaf-cache
+      image: conda-python-pandas
+    branch: actions-5a2aea19a8-github-test-conda-python-3.9-pandas-latest
+    commit: e1d37548845f61cc0a8126d90fc3111718346368
+  test-fedora-r-clang-sanitizer: !Task
+    name: test-fedora-r-clang-sanitizer
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-5a2aea19a8-azure-test-fedora-r-clang-sanitizer
+    commit: 8e75533f2561109f30f21b5602c078f25f16e19a
+  centos-8-stream-arm64: !Task
+    name: centos-8-stream-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: arm64
+      target: centos-8-stream-aarch64
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-centos-8-stream-arm64
+    commit: 35448fe7463939ad2437f0a3a2830b3531655b1c
+  test-r-linux-valgrind: !Task
+    name: test-r-linux-valgrind
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_R_DEV: 'TRUE'
+      image: ubuntu-r-valgrind
+
+    branch: actions-5a2aea19a8-azure-test-r-linux-valgrind
+    commit: 2ea1508550bc72b5eed38fae6f26eb9eca04147b
+  debian-trixie-arm64: !Task
+    name: debian-trixie-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: arm64
+      target: debian-trixie-arm64
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-debian-trixie-arm64
+    commit: 12dea01ea9ca36988859afeec72c9c32e86ec144
+  test-cuda-cpp: !Task
+    name: test-cuda-cpp
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-cpp
+
+    branch: actions-5a2aea19a8-github-test-cuda-cpp
+    commit: 1076d5809719ccfb18b9de96f569cbe72439e3e5
+  test-conda-python-3.8-pandas-1.0: !Task
+    name: test-conda-python-3.8-pandas-1.0
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: '3.8'
+        PANDAS: '1.0'
+        NUMPY: '1.19'
+      image: conda-python-pandas
+    branch: actions-5a2aea19a8-github-test-conda-python-3.8-pandas-1.0
+    commit: 67338f436ec3ee26f337236d3a51280f9a627fd7
+  test-r-devdocs: !Task
+    name: test-r-devdocs
+    ci: github
+    template: r/github.devdocs.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-r-devdocs
+    commit: 6fd64ae9d31b5a948b8190ebb2eb473f3a35793a
+  test-conda-python-3.11-hypothesis: !Task
+    name: test-conda-python-3.11-hypothesis
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        HYPOTHESIS_PROFILE: ci
+        PYARROW_TEST_HYPOTHESIS: ON
+        # limit to execute hypothesis tests only
+        PYTEST_ARGS: -m hypothesis -W error
+      image: conda-python-pandas
+
+    branch: actions-5a2aea19a8-github-test-conda-python-3.11-hypothesis
+    commit: c005d07a8fa54c8e792bd885079066471344292e
+  test-r-linux-rchk: !Task
+    name: test-r-linux-rchk
+    ci: github
+    template: r/github.linux.rchk.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-r-linux-rchk
+    commit: 848f532270d31a1a2219142184899ceea00fed21
+  test-fedora-39-cpp: !Task
+    name: test-fedora-39-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 39
+      image: fedora-cpp
+
+    branch: actions-5a2aea19a8-github-test-fedora-39-cpp
+    commit: ab56f6789d63138fc70800d7dace8fe9889401ec
+  test-alpine-linux-cpp: !Task
+    name: test-alpine-linux-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      image: alpine-linux-cpp
+    branch: actions-5a2aea19a8-github-test-alpine-linux-cpp
+    commit: d58b3ff545362f532cf78f51ef3baa4442a156b2
+  almalinux-9-arm64: !Task
+    name: almalinux-9-arm64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow[0-9]+-acero-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-acero-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-acero-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-dataset-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debugsource-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-flight-sql-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-flight-sql-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - gandiva[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-glib-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet[0-9]+-libs-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-tools-debuginfo-16.0.0.dev174-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      architecture: arm64
+      target: almalinux-9-aarch64
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-5a2aea19a8-github-almalinux-9-arm64
+    commit: 02596d6316c9286247ea5bc77c0a8b36daa0c43c
+  ubuntu-focal-amd64: !Task
+    name: ubuntu-focal-amd64
+    ci: github
+    template: linux-packages/github.linux.yml
+    artifacts:
+    - arrow-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - apache-arrow-apt-source_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow-apt-source_16.0.0.dev174-1.dsc
+    - apache-arrow-apt-source_16.0.0.dev174-1_all.deb
+    - apache-arrow-apt-source_16.0.0.dev174.orig.tar.gz
+    - apache-arrow_16.0.0.dev174-1.debian.tar.xz
+    - apache-arrow_16.0.0.dev174-1.dsc
+    - apache-arrow_16.0.0.dev174.orig.tar.gz
+    - gir1.2-arrow-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-dataset-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-flight-sql-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-gandiva-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-parquet-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-acero1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-acero1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dataset1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-dataset1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight-sql1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight-sql1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-flight1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-flight1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libgandiva1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libgandiva1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib-doc_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libparquet1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libparquet1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - parquet-tools_16.0.0.dev174-1_[a-z0-9]+.deb
+    - gir1.2-arrow-cuda-1.0_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib-dev_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda-glib1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda-glib1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    - libarrow-cuda1600-dbgsym_16.0.0.dev174-1_[a-z0-9]+.d?deb
+    - libarrow-cuda1600_16.0.0.dev174-1_[a-z0-9]+.deb
+    params:
+      architecture: amd64
+      target: ubuntu-focal
+      task_namespace: apt
+      upload_extensions:
+      - .ddeb
+      - .deb
+      - .debian.tar.xz
+      - .dsc
+      - .orig.tar.gz
+    branch: actions-5a2aea19a8-github-ubuntu-focal-amd64
+    commit: 4c94b88b6fe07fcf8b8744801afdac1904517ef2
+  test-r-rhub-debian-gcc-release-custom-ccache: !Task
+    name: test-r-rhub-debian-gcc-release-custom-ccache
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-release
+      r_tag: latest
+      r_custom_ccache: true
+
+    branch: actions-5a2aea19a8-azure-test-r-rhub-debian-gcc-release-custom-ccache
+    commit: fae2faa950288c09284bab8f1aeef43a7ec69fe5
+  test-debian-11-python-3-i386: !Task
+    name: test-debian-11-python-3-i386
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARCH: i386
+        DEBIAN: 11
+      flags: -e ARROW_S3=OFF -e ARROW_GANDIVA=OFF
+      image: debian-python
+
+    branch: actions-5a2aea19a8-github-test-debian-11-python-3-i386
+    commit: a56b477e2d7018a04d05cbc237ac118eef6c92f5
+  test-r-install-local: !Task
+    name: test-r-install-local
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params: {}
+    branch: actions-5a2aea19a8-github-test-r-install-local
+    commit: d56d87ea3a2bac9b44a63af3a6f6fbd7aea52fbc
+  test-r-offline-minimal: !Task
+    name: test-r-offline-minimal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: library
+      r_image: r-base
+      r_tag: latest
+      flags: -e ARROW_OFFLINE_BUILD=true
+
+    branch: actions-5a2aea19a8-azure-test-r-offline-minimal
+    commit: dfaf0b3cb994b0e61a90363b3b1b024874f6c39e
+  test-ubuntu-20.04-cpp-bundled: !Task
+    name: test-ubuntu-20.04-cpp-bundled
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-cpp-bundled
+
+    branch: actions-5a2aea19a8-github-test-ubuntu-20.04-cpp-bundled
+    commit: be25d2947faa12b31c81c8370f0ea78846a011cf
+  test-r-rstudio-r-base-4.1-opensuse153: !Task
+    name: test-r-rstudio-r-base-4.1-opensuse153
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.1-opensuse153
+
+  # This is with R built with --enable-lto
+  # CRAN also does R CMD INSTALL --use-LTO
+  # which overrides the UseLTO field in r/DESCRIPTION
+    branch: actions-5a2aea19a8-azure-test-r-rstudio-r-base-4.1-opensuse153
+    commit: 5cb8119f8ea9ae80b4aaaefae4f474e976231a5d
+  test-ubuntu-20.04-cpp: !Task
+    name: test-ubuntu-20.04-cpp
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      image: ubuntu-cpp
+    branch: actions-5a2aea19a8-github-test-ubuntu-20.04-cpp
+    commit: 2a067bdc609ba390edfcde9cda5feef4d3879f1b
+  test-r-install-local-minsizerel: !Task
+    name: test-r-install-local-minsizerel
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params:
+      env:
+        CMAKE_BUILD_TYPE: MinSizeRel
+
+    branch: actions-5a2aea19a8-github-test-r-install-local-minsizerel
+    commit: 34002b7eafcbf1e7c11b241a178ef5be278af736
+params:
+  pr_number: 40222
+branch: actions-5a2aea19a8
