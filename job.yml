@@ -1,0 +1,26 @@
+!Job
+target: !Target
+  head: 81493f31ffe67fe7ff19cc3591e6fa98f4a4c15e
+  email: jkeane@gmail.com
+  branch: clang18_in_CI
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 16.0.0.dev111
+  r_version: 15.0.0.100000111
+  no_rc_version: 16.0.0.dev111
+  no_rc_r_version: 15.0.0.100000111
+  no_rc_semver_version: 16.0.0-dev111
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-r-linux-as-cran: !Task
+    name: test-r-linux-as-cran
+    ci: github
+    template: r/github.linux.cran.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_image }}
+
+    branch: build-13-github-test-r-linux-as-cran
+    commit: eb50ee89c1b1757fed54a19a7a1ac3c4f1995396
+params: {}
+branch: build-13
