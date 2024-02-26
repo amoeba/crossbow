@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 52918f6971ba41aa64054a6f2d1551b9ec89dd26
+  email: unknown
+  branch: ARROW-40215
+  remote: https://github.com/ianmcook/arrow.git
+  github_repo: ianmcook/arrow
+  version: 16.0.0.dev177
+  r_version: 15.0.0.100000177
+  no_rc_version: 16.0.0.dev177
+  no_rc_r_version: 15.0.0.100000177
+  no_rc_semver_version: 16.0.0-dev177
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-2b9d99ed0a-github-preview-docs
+    commit: 960d4edb06eba050418c4b16583b0313c6a1d39f
+params:
+  pr_number: 40219
+branch: actions-2b9d99ed0a
