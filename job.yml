@@ -1,0 +1,30 @@
+!Job
+target: !Target
+  head: 45f09036bea03f6d84da3f57c1218cdcd44a602c
+  email: jkeane@gmail.com
+  branch: GH40268-pygit2
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 16.0.0.dev183
+  r_version: 15.0.0.100000183
+  no_rc_version: 16.0.0.dev183
+  no_rc_r_version: 15.0.0.100000183
+  no_rc_semver_version: 16.0.0-dev183
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-cuda-python: !Task
+    name: test-cuda-python
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-python
+      env:
+        UBUNTU: 22.04
+
+  ############################## Fuzz tests #################################
+
+    branch: build-34-github-test-cuda-python
+    commit: e9a3098d669b59a41702bd56ca5dac334c286da8
+params: {}
+branch: build-34
