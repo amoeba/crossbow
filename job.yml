@@ -1,0 +1,39 @@
+!Job
+target: !Target
+  head: 08ce654fd0e7fd871c67bb011dc5f70e09ee727b
+  email: unknown
+  branch: gh-39782
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 16.0.0.dev136
+  r_version: 15.0.0.100000136
+  no_rc_version: 16.0.0.dev136
+  no_rc_r_version: 15.0.0.100000136
+  no_rc_semver_version: 16.0.0-dev136
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-cuda-python: !Task
+    name: test-cuda-python
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-python
+
+  ############################## Fuzz tests #################################
+
+    branch: actions-060295331c-github-test-cuda-python
+    commit: c445a21a2554a25fa296e7f1393edb10acab5048
+  test-cuda-cpp: !Task
+    name: test-cuda-cpp
+    ci: github
+    template: docker-tests/github.cuda.yml
+    artifacts: []
+    params:
+      image: ubuntu-cuda-cpp
+
+    branch: actions-060295331c-github-test-cuda-cpp
+    commit: fcbeb3a1b0487d09fa43ebc187fbe64ffa224eb1
+params:
+  pr_number: 39783
+branch: actions-060295331c
