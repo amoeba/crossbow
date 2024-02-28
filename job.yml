@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 8815aa706a0260030b2ddd41d29de5d766fa0eeb
+  email: unknown
+  branch: clang18_in_CI
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 16.0.0.dev122
+  r_version: 15.0.0.100000122
+  no_rc_version: 16.0.0.dev122
+  no_rc_r_version: 15.0.0.100000122
+  no_rc_semver_version: 16.0.0-dev122
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-ubuntu-24.04-cpp-gcc-14: !Task
+    name: test-ubuntu-24.04-cpp-gcc-14
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '24.04'
+        GCC_VERSION: 14
+      flags: -e CC=gcc-14 -e CXX=g++-14
+      image: ubuntu-cpp
+
+    branch: actions-d5b819f13c-github-test-ubuntu-24.04-cpp-gcc-14
+    commit: 5439345f33a894d09c472a1e2e1eb5ff35cdbf2b
+params:
+  pr_number: 40244
+branch: actions-d5b819f13c
