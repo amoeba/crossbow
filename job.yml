@@ -1,0 +1,65 @@
+!Job
+target: !Target
+  head: c65297a1cda54e1ddbd1686ed9f5f89505690895
+  email: unknown
+  branch: use_rver_instead_of_base
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 16.0.0.dev217
+  r_version: 15.0.0.100000217
+  no_rc_version: 16.0.0.dev217
+  no_rc_r_version: 15.0.0.100000217
+  no_rc_semver_version: 16.0.0-dev217
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-r-rocker-r-ver-latest: !Task
+    name: test-r-rocker-r-ver-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rocker
+      r_image: r-ver
+      r_tag: latest
+    branch: actions-926dd1a4d3-azure-test-r-rocker-r-ver-latest
+    commit: ce985faaccaa5b12d232f65493a014528884542a
+  test-r-rstudio-r-base-4.1-opensuse153: !Task
+    name: test-r-rstudio-r-base-4.1-opensuse153
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.1-opensuse153
+
+  # This is with R built with --enable-lto
+  # CRAN also does R CMD INSTALL --use-LTO
+  # which overrides the UseLTO field in r/DESCRIPTION
+    branch: actions-926dd1a4d3-azure-test-r-rstudio-r-base-4.1-opensuse153
+    commit: af1ae5425e08d17dd59a3de1baace87333175396
+  test-r-rhub-ubuntu-gcc-release-latest: !Task
+    name: test-r-rhub-ubuntu-gcc-release-latest
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: ubuntu-gcc-release
+      r_tag: latest
+    branch: actions-926dd1a4d3-azure-test-r-rhub-ubuntu-gcc-release-latest
+    commit: 03729f221f54c535b77936a29f8571588eee0c43
+  test-r-rstudio-r-base-4.2-focal: !Task
+    name: test-r-rstudio-r-base-4.2-focal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.2-focal
+    branch: actions-926dd1a4d3-azure-test-r-rstudio-r-base-4.2-focal
+    commit: c4405623df5668873b466b79714baab4e7eb399d
+params:
+  pr_number: 40321
+branch: actions-926dd1a4d3
