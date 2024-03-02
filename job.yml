@@ -1,0 +1,56 @@
+!Job
+target: !Target
+  head: 31dae1a3aa9552e2519d94446dd4a7133b272793
+  email: unknown
+  branch: use_rver_instead_of_base
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 16.0.0.dev216
+  r_version: 15.0.0.100000216
+  no_rc_version: 16.0.0.dev216
+  no_rc_r_version: 15.0.0.100000216
+  no_rc_semver_version: 16.0.0-dev216
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-r-minimal-build: !Task
+    name: test-r-minimal-build
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rocker
+      r_image: r-ver
+      r_tag: latest
+      flags: -e LIBARROW_MINIMAL=TRUE
+
+    branch: actions-f6184930e1-azure-test-r-minimal-build
+    commit: dda45f568f519706dce7444f44d6c11c60c2543b
+  test-r-offline-minimal: !Task
+    name: test-r-offline-minimal
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rocker
+      r_image: r-ver
+      r_tag: latest
+      flags: -e ARROW_OFFLINE_BUILD=true
+
+    branch: actions-f6184930e1-azure-test-r-offline-minimal
+    commit: 85234654761aa491915646b0f308a6025d5bb6e6
+  test-r-depsource-bundled: !Task
+    name: test-r-depsource-bundled
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rocker
+      r_image: r-ver
+      r_tag: latest
+      flags: -e ARROW_DEPENDENCY_SOURCE=BUNDLED
+
+    branch: actions-f6184930e1-azure-test-r-depsource-bundled
+    commit: 8d61344e2258a82e24f3ed2f6f48e274204cbd86
+params:
+  pr_number: 40321
+branch: actions-f6184930e1
