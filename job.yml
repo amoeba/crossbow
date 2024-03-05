@@ -1,0 +1,33 @@
+!Job
+target: !Target
+  head: 6e84caa3ddd8d78336d4077898e4db6613233614
+  email: unknown
+  branch: fix-hdfs-hypothesis
+  remote: https://github.com/jorisvandenbossche/arrow.git
+  github_repo: jorisvandenbossche/arrow
+  version: 16.0.0.dev230
+  r_version: 15.0.0.100000230
+  no_rc_version: 16.0.0.dev230
+  no_rc_r_version: 15.0.0.100000230
+  no_rc_semver_version: 16.0.0-dev230
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  test-conda-python-3.11-hypothesis: !Task
+    name: test-conda-python-3.11-hypothesis
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.11
+        HYPOTHESIS_PROFILE: ci
+        PYARROW_TEST_HYPOTHESIS: ON
+        # limit to execute hypothesis tests only
+        PYTEST_ARGS: -m hypothesis -W error
+      image: conda-python-pandas
+
+    branch: actions-3636eb2740-github-test-conda-python-3.11-hypothesis
+    commit: bfcde9130b5d9bd6de9499b34c71f584bb493892
+params:
+  pr_number: 40363
+branch: actions-3636eb2740
