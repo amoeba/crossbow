@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: f9483a7f1d6f396148c82f3e4b8cfc87281781a1
+  email: unknown
+  branch: gh-40333-docs-simd-env-vars
+  remote: https://github.com/amoeba/arrow.git
+  github_repo: amoeba/arrow
+  version: 16.0.0.dev232
+  r_version: 15.0.0.100000232
+  no_rc_version: 16.0.0.dev232
+  no_rc_r_version: 15.0.0.100000232
+  no_rc_semver_version: 16.0.0-dev232
+  no_rc_snapshot_version: 16.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: ubuntu-docs
+      publish: true
+    branch: actions-9a20dad6c8-github-preview-docs
+    commit: 970175df1327c3a9b588d28bd75ae97161699b40
+params:
+  pr_number: 40374
+branch: actions-9a20dad6c8
