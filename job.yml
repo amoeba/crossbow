@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 120d0f9c8476c0e51d5e25178b1efb1eaf613e48
+  email: petridish@gmail.com
+  branch: feature/gh-43547-recheck
+  remote: https://github.com/amoeba/arrow
+  github_repo: amoeba/arrow
+  version: 9.0.0.dev5006
+  r_version: 17.0.0.100005006
+  no_rc_version: 9.0.0.dev5006
+  no_rc_r_version: 17.0.0.100005006
+  no_rc_semver_version: 9.0.0-dev5006
+  no_rc_snapshot_version: 9.0.0-SNAPSHOT
+tasks:
+  r-recheck: !Task
+    name: r-recheck
+    ci: github
+    template: r/github.recheck.yml
+    artifacts: []
+    params:
+      which: strong
+      subdirectory: r
+
+  ########################### Release verification ############################
+
+  ######################## Linux verification #################################
+
+    branch: build-42-github-r-recheck
+    commit: 041b39f10ada1b3e2ef90c880be5869330779ede
+params: {}
+branch: build-42
