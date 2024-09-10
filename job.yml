@@ -1,0 +1,30 @@
+!Job
+target: !Target
+  head: 2e33e98f583035cd686455870e9cbf5fb6dc9966
+  email: petridish@gmail.com
+  branch: main
+  remote: https://github.com/amoeba/arrow
+  github_repo: amoeba/arrow
+  version: 9.0.0.dev5002
+  r_version: 17.0.0.100005002
+  no_rc_version: 9.0.0.dev5002
+  no_rc_r_version: 17.0.0.100005002
+  no_rc_semver_version: 9.0.0-dev5002
+  no_rc_snapshot_version: 9.0.0-SNAPSHOT
+tasks:
+  preview-docs: !Task
+    name: preview-docs
+    ci: github
+    template: docs/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        JDK: 17
+      pr_number: Unset
+      flags: -v $PWD/build/:/build/
+      image: debian-docs
+      publish: true
+    branch: build-36-github-preview-docs
+    commit: fd7aa273f91c1460157bf04c229ec44d45d5475f
+params: {}
+branch: build-36
