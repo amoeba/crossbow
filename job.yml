@@ -1,0 +1,32 @@
+!Job
+target: !Target
+  head: a448eb4c5b809feceea51f0b19200707ed7da803
+  email: petridish@gmail.com
+  branch: feature/gh-43547-recheck
+  remote: https://github.com/amoeba/arrow
+  github_repo: amoeba/arrow
+  version: 18.0.0.dev193
+  r_version: 17.0.0.100000193
+  no_rc_version: 18.0.0.dev193
+  no_rc_r_version: 17.0.0.100000193
+  no_rc_semver_version: 18.0.0-dev193
+  no_rc_snapshot_version: 18.0.0-SNAPSHOT
+tasks:
+  verify-rc-source-ruby-macos-arm64: !Task
+    name: verify-rc-source-ruby-macos-arm64
+    ci: github
+    template: verify-rc/github.macos.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_FLIGHT: 0
+        ARROW_GANDIVA: 0
+        TEST_INTEGRATION_JAVA: 0
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      target: ruby
+      github_runner: macos-14
+
+    branch: build-53-github-verify-rc-source-ruby-macos-arm64
+    commit: ac043aa42d5677615d43e781c087bb870f6310fe
+params: {}
+branch: build-53
