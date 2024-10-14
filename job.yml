@@ -1,0 +1,31 @@
+!Job
+target: !Target
+  head: 27e56f01e87ce47ccd6d1ed7b8cd341a5e50d011
+  email: petridish@gmail.com
+  branch: main
+  remote: https://github.com/amoeba/arrow
+  github_repo: amoeba/arrow
+  version: 18.0.0.dev454
+  r_version: 17.0.0.100000454
+  no_rc_version: 18.0.0.dev454
+  no_rc_r_version: 17.0.0.100000454
+  no_rc_semver_version: 18.0.0-dev454
+  no_rc_snapshot_version: 18.0.0-SNAPSHOT
+tasks:
+  verify-rc-source-ruby-linux-conda-latest-amd64: !Task
+    name: verify-rc-source-ruby-linux-conda-latest-amd64
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        CONDA: latest
+      target: ruby
+      distro: conda
+
+    # Skip verification for wheels on Ubuntu 20.04
+    # GH-44253. Remove once we drop support for 20.04
+    branch: build-60-github-verify-rc-source-ruby-linux-conda-latest-amd64
+    commit: 3942bfaacc3adc5005560df1699be0af871bcaa8
+params: {}
+branch: build-60
