@@ -1,0 +1,41 @@
+!Job
+target: !Target
+  head: f96684fc7ab69436e0e84961bb2989b892772bc7
+  email: petridish@gmail.com
+  branch: maint-18.0.0-r
+  remote: https://github.com/apache/arrow
+  github_repo: apache/arrow
+  version: 19.0.0.dev1
+  r_version: 18.0.0
+  no_rc_version: 19.0.0.dev1
+  no_rc_r_version: 18.0.0
+  no_rc_semver_version: 19.0.0-dev1
+  no_rc_snapshot_version: 19.0.0-SNAPSHOT
+tasks:
+  r-recheck-strong: !Task
+    name: r-recheck-strong
+    ci: github
+    template: r/github.recheck.yml
+    artifacts: []
+    params:
+      which: strong
+    branch: build-70-github-r-recheck-strong
+    commit: 86782bf9b3ce22838fe27cf813d8b7db7134058b
+  r-recheck-most: !Task
+    name: r-recheck-most
+    ci: github
+    template: r/github.recheck.yml
+    artifacts: []
+    params:
+      which: most
+
+  ########################### Release verification ############################
+
+  ######################## Linux verification #################################
+
+    # Skip verification for python and integration on Ubuntu 20.04
+    # GH-44253. Remove once we drop support for 20.04
+    branch: build-70-github-r-recheck-most
+    commit: 2b3ce87d46a678e679255dddf1be3d584bf00e8b
+params: {}
+branch: build-70
